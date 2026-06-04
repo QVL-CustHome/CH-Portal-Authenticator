@@ -13,6 +13,9 @@ server/dist/
 *.log
 npm-debug.log*
 
+# Scripts Jira locaux (jamais pousses)
+.jira/
+
 # Claude Code (config locale)
 .claude/settings.local.json
 

@@ -1,9 +1,8 @@
 # Dependencies
 node_modules/
 
-# Builds
-client/dist/
-server/dist/
+# Build
+dist/
 
 # Env (secrets - jamais commites)
 .env

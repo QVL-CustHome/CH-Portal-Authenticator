@@ -23,11 +23,14 @@ Navigateur ──► CH-Api-GateWay (:8080)
 ## Structure
 
 ```
-client/   Front React (Vite + TypeScript, react-router)
-server/   Serveur Node.js (Express + TypeScript) :
-          - sert le build du client sur :3000
-          - proxifie /api → GATEWAY_URL
-          - GET /health
+src/         Front React (Vite + TypeScript, react-router)
+  api/       Client API (/api/auth/* via le Gateway)
+  pages/     Login, Register, ForgotPassword, ResetPassword, Account
+  components/
+server.js    Serveur Node.js (Express) :
+             - sert le build (dist/) sur :3000
+             - proxifie /api → GATEWAY_URL
+             - GET /health
 ```
 
 ## Pages

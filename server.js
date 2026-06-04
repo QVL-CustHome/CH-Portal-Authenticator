@@ -1,5 +1,5 @@
-// CH-Portail-Authenticator - serveur Node.js
-// Sert le build React (client/dist) et proxifie /api vers CH-Api-GateWay,
+// CH-Portail-Authenticator - serveur Node.js (prod)
+// Sert le build React (dist/) et proxifie /api vers CH-Api-GateWay,
 // de sorte que le navigateur reste en same-origin (cookies HttpOnly ch_token / ch_refresh).
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = Number(process.env.PORT ?? 3000);
 const GATEWAY_URL = process.env.GATEWAY_URL ?? "http://localhost:8080";
-const CLIENT_DIST = path.resolve(__dirname, "../../client/dist");
+const DIST = path.join(__dirname, "dist");
 
 const app = express();
 app.disable("x-powered-by");
@@ -31,9 +31,9 @@ app.use(
 );
 
 // Front React buildee + fallback SPA (react-router gere les routes cote client)
-app.use(express.static(CLIENT_DIST));
+app.use(express.static(DIST));
 app.use((_req, res) => {
-  res.sendFile(path.join(CLIENT_DIST, "index.html"));
+  res.sendFile(path.join(DIST, "index.html"));
 });
 
 app.listen(PORT, () => {

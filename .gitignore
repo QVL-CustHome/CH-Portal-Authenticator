@@ -4,6 +4,9 @@ node_modules/
 # Build
 dist/
 
+# Couverture de tests
+coverage/
+
 # Env (secrets - jamais commites)
 .env
 .env.local

@@ -13,8 +13,9 @@ export default function ForgotPassword() {
     setLoading(true);
     try {
       await forgotPassword(email);
+    } catch {
+      // Message identique quoi qu'il arrive (anti-enumeration, l'API repond toujours 202).
     } finally {
-      // L'API repond toujours 202 (anti-enumeration) : message identique quoi qu'il arrive.
       setSent(true);
       setLoading(false);
     }

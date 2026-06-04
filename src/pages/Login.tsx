@@ -1,14 +1,9 @@
 import { FormEvent, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { login } from "../api/auth";
+import { safeRedirect } from "../lib/redirect";
+import { navigateTo } from "../lib/navigation";
 import Feedback from "../components/Feedback";
-
-// N'accepte que des chemins relatifs internes pour eviter tout open redirect
-// (le Gateway envoie ?redirect=<URI demandee> lors d'un 401 navigateur).
-function safeRedirect(raw: string | null): string {
-  if (raw && raw.startsWith("/") && !raw.startsWith("//")) return raw;
-  return "/account";
-}
 
 export default function Login() {
   const [searchParams] = useSearchParams();
@@ -24,7 +19,7 @@ export default function Login() {
     try {
       await login(email, password);
       // Cookies poses par l'Authenticator : on repart vers la page demandee.
-      window.location.assign(safeRedirect(searchParams.get("redirect")));
+      navigateTo(safeRedirect(searchParams.get("redirect")));
     } catch {
       setError("Email ou mot de passe incorrect.");
       setLoading(false);

@@ -1,0 +1,69 @@
+import { FormEvent, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { login } from "../api/auth";
+import Feedback from "../components/Feedback";
+
+// N'accepte que des chemins relatifs internes pour eviter tout open redirect
+// (le Gateway envoie ?redirect=<URI demandee> lors d'un 401 navigateur).
+function safeRedirect(raw: string | null): string {
+  if (raw && raw.startsWith("/") && !raw.startsWith("//")) return raw;
+  return "/account";
+}
+
+export default function Login() {
+  const [searchParams] = useSearchParams();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+    try {
+      await login(email, password);
+      // Cookies poses par l'Authenticator : on repart vers la page demandee.
+      window.location.assign(safeRedirect(searchParams.get("redirect")));
+    } catch {
+      setError("Email ou mot de passe incorrect.");
+      setLoading(false);
+    }
+  }
+
+  return (
+    <>
+      <h2>Connexion</h2>
+      <form onSubmit={onSubmit}>
+        <label>
+          Email
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
+            required
+          />
+        </label>
+        <label>
+          Mot de passe
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+            required
+          />
+        </label>
+        <Feedback error={error} />
+        <button type="submit" disabled={loading}>
+          {loading ? "Connexion..." : "Se connecter"}
+        </button>
+      </form>
+      <nav className="links">
+        <Link to="/forgot-password">Mot de passe oublié ?</Link>
+        <Link to="/register">Créer un compte</Link>
+      </nav>
+    </>
+  );
+}

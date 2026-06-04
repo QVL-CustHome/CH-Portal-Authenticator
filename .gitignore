@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Builds
+client/dist/
+server/dist/
+
+# Env (secrets - jamais commites)
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Claude Code (config locale)
+.claude/settings.local.json
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

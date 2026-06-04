@@ -23,6 +23,8 @@ export default function Account() {
   async function onLogout() {
     try {
       await logout();
+    } catch {
+      // On revient au login meme si l'API echoue : les cookies expireront cote serveur.
     } finally {
       navigate("/login", { replace: true });
     }

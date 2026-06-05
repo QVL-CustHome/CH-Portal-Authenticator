@@ -1,9 +1,9 @@
+import { Button, Feedback, TextField } from "@custhome/ui";
 import { FormEvent, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { login } from "../api/auth";
 import { safeRedirect } from "../lib/redirect";
 import { navigateTo } from "../lib/navigation";
-import Feedback from "../components/Feedback";
 
 export default function Login() {
   const [searchParams] = useSearchParams();
@@ -30,30 +30,26 @@ export default function Login() {
     <>
       <h2>Connexion</h2>
       <form onSubmit={onSubmit}>
-        <label>
-          Email
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
-            required
-          />
-        </label>
-        <label>
-          Mot de passe
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
-            required
-          />
-        </label>
+        <TextField
+          label="Email"
+          type="email"
+          value={email}
+          onChange={setEmail}
+          autoComplete="email"
+          required
+        />
+        <TextField
+          label="Mot de passe"
+          type="password"
+          value={password}
+          onChange={setPassword}
+          autoComplete="current-password"
+          required
+        />
         <Feedback error={error} />
-        <button type="submit" disabled={loading}>
-          {loading ? "Connexion..." : "Se connecter"}
-        </button>
+        <Button type="submit" loading={loading} fullWidth>
+          Se connecter
+        </Button>
       </form>
       <nav className="links">
         <Link to="/forgot-password">Mot de passe oublié ?</Link>

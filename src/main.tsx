@@ -1,4 +1,5 @@
 import { ChThemeProvider } from "@custhome/ui";
+import "@custhome/ui/styles.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";

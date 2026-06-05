@@ -5,8 +5,11 @@
   "type": "module",
   "description": "Portail d'authentification CustHome - React + Node.js, derriere CH-Api-GateWay",
   "scripts": {
+    "predev": "node scripts/sync-ui-lib.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/sync-ui-lib.mjs",
     "build": "tsc -b && vite build",
+    "sync:ui": "node scripts/sync-ui-lib.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "vitest run",

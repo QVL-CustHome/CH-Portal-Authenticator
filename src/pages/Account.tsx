@@ -1,7 +1,7 @@
+import { Button, Feedback, Spinner } from "@custhome/ui";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ApiError, getMe, logout, Me } from "../api/auth";
-import Feedback from "../components/Feedback";
 
 export default function Account() {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function Account() {
   }
 
   if (error) return <Feedback error={error} />;
-  if (!me) return <p>Chargement...</p>;
+  if (!me) return <Spinner label="Chargement" />;
 
   return (
     <>
@@ -56,9 +56,9 @@ export default function Account() {
         <dt>Compte créé le</dt>
         <dd>{new Date(me.created_at).toLocaleDateString("fr-FR")}</dd>
       </dl>
-      <button type="button" onClick={onLogout}>
+      <Button variant="secondary" onClick={onLogout}>
         Se déconnecter
-      </button>
+      </Button>
     </>
   );
 }

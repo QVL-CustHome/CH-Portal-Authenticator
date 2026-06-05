@@ -1,7 +1,7 @@
+import { Button, Feedback, TextField } from "@custhome/ui";
 import { FormEvent, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { resetPassword } from "../api/auth";
-import Feedback from "../components/Feedback";
 
 // Page cible du lien email (password_reset.url = /reset-password?token=...).
 export default function ResetPassword() {
@@ -51,32 +51,27 @@ export default function ResetPassword() {
     <>
       <h2>Réinitialisation du mot de passe</h2>
       <form onSubmit={onSubmit}>
-        <label>
-          Nouveau mot de passe
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="new-password"
-            minLength={8}
-            required
-          />
-        </label>
-        <label>
-          Confirmation
-          <input
-            type="password"
-            value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
-            autoComplete="new-password"
-            minLength={8}
-            required
-          />
-        </label>
+        <TextField
+          label="Nouveau mot de passe"
+          type="password"
+          value={password}
+          onChange={setPassword}
+          autoComplete="new-password"
+          helperText="8 caractères minimum"
+          required
+        />
+        <TextField
+          label="Confirmation"
+          type="password"
+          value={confirm}
+          onChange={setConfirm}
+          autoComplete="new-password"
+          required
+        />
         <Feedback error={error} />
-        <button type="submit" disabled={loading}>
-          {loading ? "Enregistrement..." : "Définir le mot de passe"}
-        </button>
+        <Button type="submit" loading={loading} fullWidth>
+          Définir le mot de passe
+        </Button>
       </form>
       <nav className="links">
         <Link to="/login">Retour à la connexion</Link>

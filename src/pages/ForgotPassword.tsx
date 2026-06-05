@@ -1,7 +1,7 @@
+import { Button, Feedback, TextField } from "@custhome/ui";
 import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { forgotPassword } from "../api/auth";
-import Feedback from "../components/Feedback";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -28,19 +28,17 @@ export default function ForgotPassword() {
         <Feedback info="Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé." />
       ) : (
         <form onSubmit={onSubmit}>
-          <label>
-            Email
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
-              required
-            />
-          </label>
-          <button type="submit" disabled={loading}>
-            {loading ? "Envoi..." : "Envoyer le lien"}
-          </button>
+          <TextField
+            label="Email"
+            type="email"
+            value={email}
+            onChange={setEmail}
+            autoComplete="email"
+            required
+          />
+          <Button type="submit" loading={loading} fullWidth>
+            Envoyer le lien
+          </Button>
         </form>
       )}
       <nav className="links">

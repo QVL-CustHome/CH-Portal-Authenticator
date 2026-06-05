@@ -1,12 +1,12 @@
+import { Card, Layout as ChLayout } from "@custhome/ui";
 import { Outlet } from "react-router-dom";
 
 export default function Layout() {
   return (
-    <main className="layout">
-      <h1 className="brand">CustHome</h1>
-      <div className="card">
+    <ChLayout>
+      <Card>
         <Outlet />
-      </div>
-    </main>
+      </Card>
+    </ChLayout>
   );
 }

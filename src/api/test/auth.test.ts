@@ -7,7 +7,7 @@ import {
   logout,
   register,
   resetPassword,
-} from "./auth";
+} from "../auth";
 
 function mockFetch(status: number, body?: unknown) {
   const fn = vi.fn().mockResolvedValue(

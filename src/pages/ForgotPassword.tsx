@@ -1,49 +1,22 @@
-import { Button, Feedback, TextField } from "@custhome/ui";
-import { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
-import { forgotPassword } from "../api/auth";
+import { Feedback, Form, InputEmail, PageContent, useTranslation } from "@custhome/ui";
+import AuthNav from "../components/AuthNav";
+import { useForgotPassword } from "../hooks/useForgotPassword";
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState("");
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  async function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await forgotPassword(email);
-    } catch {
-      // Message identique quoi qu'il arrive (anti-enumeration, l'API repond toujours 202).
-    } finally {
-      setSent(true);
-      setLoading(false);
-    }
-  }
-
+  const { t } = useTranslation();
+  const { email, setEmail, sent, loading, submit } = useForgotPassword();
   return (
-    <>
-      <h2>Mot de passe oublié</h2>
+    <PageContent
+      title={t("auth.forgot.title")}
+      footer={<AuthNav links={[{ to: "/login", label: t("auth.link.login") }]} />}
+    >
       {sent ? (
-        <Feedback info="Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé." />
+        <Feedback info={t("auth.forgot.sent")} />
       ) : (
-        <form onSubmit={onSubmit}>
-          <TextField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={setEmail}
-            autoComplete="email"
-            required
-          />
-          <Button type="submit" loading={loading} fullWidth>
-            Envoyer le lien
-          </Button>
-        </form>
+        <Form onSubmit={submit} submitLabel={t("auth.forgot.submit")} loading={loading}>
+          <InputEmail label={t("auth.field.email")} value={email} onChange={setEmail} required />
+        </Form>
       )}
-      <nav className="links">
-        <Link to="/login">Retour à la connexion</Link>
-      </nav>
-    </>
+    </PageContent>
   );
 }

@@ -1,15 +1,18 @@
 import { describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import App from "./App";
+import { Providers } from "./Providers";
+import App from "../App";
 
-vi.mock("./api/auth", { spy: true });
+vi.mock("../api/auth", { spy: true });
 
 function renderAt(url: string) {
   return render(
-    <MemoryRouter initialEntries={[url]}>
-      <App />
-    </MemoryRouter>
+    <Providers>
+      <MemoryRouter initialEntries={[url]}>
+        <App />
+      </MemoryRouter>
+    </Providers>
   );
 }
 

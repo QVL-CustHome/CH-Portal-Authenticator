@@ -2,19 +2,22 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import Register from "./Register";
-import * as authApi from "../api/auth";
+import { Providers } from "../../test/Providers";
+import Register from "../Register";
+import * as authApi from "../../api/auth";
 
-vi.mock("../api/auth", { spy: true });
+vi.mock("../../api/auth", { spy: true });
 
 function renderRegister() {
   return render(
-    <MemoryRouter initialEntries={["/register"]}>
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<p>page login</p>} />
-      </Routes>
-    </MemoryRouter>
+    <Providers>
+      <MemoryRouter initialEntries={["/register"]}>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<p>page login</p>} />
+        </Routes>
+      </MemoryRouter>
+    </Providers>
   );
 }
 

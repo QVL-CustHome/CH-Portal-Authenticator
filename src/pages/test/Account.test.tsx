@@ -2,10 +2,11 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
-import Account from "./Account";
-import * as authApi from "../api/auth";
+import { Providers } from "../../test/Providers";
+import Account from "../Account";
+import * as authApi from "../../api/auth";
 
-vi.mock("../api/auth", { spy: true });
+vi.mock("../../api/auth", { spy: true });
 
 const ME: authApi.Me = {
   user_id: "u1",
@@ -22,12 +23,14 @@ function LoginProbe() {
 
 function renderPage() {
   return render(
-    <MemoryRouter initialEntries={["/account"]}>
-      <Routes>
-        <Route path="/account" element={<Account />} />
-        <Route path="/login" element={<LoginProbe />} />
-      </Routes>
-    </MemoryRouter>
+    <Providers>
+      <MemoryRouter initialEntries={["/account"]}>
+        <Routes>
+          <Route path="/account" element={<Account />} />
+          <Route path="/login" element={<LoginProbe />} />
+        </Routes>
+      </MemoryRouter>
+    </Providers>
   );
 }
 

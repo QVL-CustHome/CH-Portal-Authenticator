@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { safeRedirect } from "./redirect";
+import { safeRedirect } from "../redirect";
 
 describe("safeRedirect (anti open-redirect)", () => {
   it("accepte un chemin relatif interne", () => {

@@ -10,14 +10,12 @@ export default function ProfileDetails({ me }: ProfileDetailsProps) {
   const { t } = useTranslation();
 
   const rolesValue: ReactNode =
-    Object.keys(me.roles).length === 0 ? (
+    me.roles.length === 0 ? (
       <em>{t("auth.account.noRoles")}</em>
     ) : (
       <ul>
-        {Object.entries(me.roles).map(([portal, role]) => (
-          <li key={portal}>
-            {portal} : {role}
-          </li>
+        {me.roles.map((role) => (
+          <li key={role}>{role}</li>
         ))}
       </ul>
     );
@@ -25,6 +23,7 @@ export default function ProfileDetails({ me }: ProfileDetailsProps) {
   return (
     <DescriptionList
       items={[
+        { label: t("auth.account.name"), value: me.name },
         { label: t("auth.account.email"), value: me.email },
         { label: t("auth.account.roles"), value: rolesValue },
         {

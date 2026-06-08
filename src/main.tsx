@@ -10,7 +10,7 @@ import "./styles.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ChI18nProvider locale={defaultLocale} messages={messages}>
-      <ChThemeProvider defaultMode="system">
+      <ChThemeProvider defaultMode="light">
         <BrowserRouter>
           <App />
         </BrowserRouter>

@@ -2,19 +2,22 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import ResetPassword from "./ResetPassword";
-import * as authApi from "../api/auth";
+import { Providers } from "../../test/Providers";
+import ResetPassword from "../ResetPassword";
+import * as authApi from "../../api/auth";
 
-vi.mock("../api/auth", { spy: true });
+vi.mock("../../api/auth", { spy: true });
 
 function renderPage(url: string) {
   return render(
-    <MemoryRouter initialEntries={[url]}>
-      <Routes>
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/login" element={<p>page login</p>} />
-      </Routes>
-    </MemoryRouter>
+    <Providers>
+      <MemoryRouter initialEntries={[url]}>
+        <Routes>
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/login" element={<p>page login</p>} />
+        </Routes>
+      </MemoryRouter>
+    </Providers>
   );
 }
 
@@ -38,7 +41,9 @@ describe("page ResetPassword", () => {
     expect(
       screen.getByRole("link", { name: /nouvelle demande/i })
     ).toHaveAttribute("href", "/forgot-password");
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /définir le mot de passe/i })
+    ).not.toBeInTheDocument();
   });
 
   it("reinitialise avec {token, new_password} puis redirige vers /login", async () => {

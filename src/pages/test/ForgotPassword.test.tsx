@@ -2,19 +2,22 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import ForgotPassword from "./ForgotPassword";
-import * as authApi from "../api/auth";
+import { Providers } from "../../test/Providers";
+import ForgotPassword from "../ForgotPassword";
+import * as authApi from "../../api/auth";
 
-vi.mock("../api/auth", { spy: true });
+vi.mock("../../api/auth", { spy: true });
 
 const MESSAGE =
   "Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé.";
 
 function renderPage() {
   return render(
-    <MemoryRouter initialEntries={["/forgot-password"]}>
-      <ForgotPassword />
-    </MemoryRouter>
+    <Providers>
+      <MemoryRouter initialEntries={["/forgot-password"]}>
+        <ForgotPassword />
+      </MemoryRouter>
+    </Providers>
   );
 }
 
@@ -51,7 +54,9 @@ describe("page ForgotPassword", () => {
     renderPage();
     await submit();
     await screen.findByText(MESSAGE);
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /envoyer le lien/i })
+    ).not.toBeInTheDocument();
   });
 
   it("propose le retour vers /login", () => {

@@ -1,81 +1,45 @@
-import { Button, Feedback, TextField } from "@custhome/ui";
-import { FormEvent, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { resetPassword } from "../api/auth";
+import { Feedback, Form, InputPassword, PageContent, useTranslation } from "@custhome/ui";
+import AuthNav from "../components/AuthNav";
+import { useResetPassword } from "../hooks/useResetPassword";
 
-// Page cible du lien email (password_reset.url = /reset-password?token=...).
 export default function ResetPassword() {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const token = searchParams.get("token") ?? "";
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
+  const { token, password, setPassword, confirm, setConfirm, error, loading, submit } =
+    useResetPassword();
 
   if (!token) {
     return (
-      <>
-        <h2>Réinitialisation du mot de passe</h2>
-        <Feedback error="Lien invalide : token manquant. Refaites une demande de réinitialisation." />
-        <nav className="links">
-          <Link to="/forgot-password">Nouvelle demande</Link>
-        </nav>
-      </>
+      <PageContent
+        title={t("auth.reset.title")}
+        footer={<AuthNav links={[{ to: "/forgot-password", label: t("auth.link.newRequest") }]} />}
+      >
+        <Feedback error={t("auth.reset.tokenMissing")} />
+      </PageContent>
     );
   }
 
-  async function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    setError(null);
-    if (password !== confirm) {
-      setError("Les mots de passe ne correspondent pas.");
-      return;
-    }
-    if (password.length < 8) {
-      setError("Le mot de passe doit contenir au moins 8 caractères.");
-      return;
-    }
-    setLoading(true);
-    try {
-      await resetPassword(token, password);
-      navigate("/login", { replace: true });
-    } catch {
-      // 400 generique cote API (token expire, deja utilise ou inconnu)
-      setError("Le lien est invalide ou expiré. Refaites une demande.");
-      setLoading(false);
-    }
-  }
-
   return (
-    <>
-      <h2>Réinitialisation du mot de passe</h2>
-      <form onSubmit={onSubmit}>
-        <TextField
-          label="Nouveau mot de passe"
-          type="password"
+    <PageContent
+      title={t("auth.reset.title")}
+      footer={<AuthNav links={[{ to: "/login", label: t("auth.link.login") }]} />}
+    >
+      <Form onSubmit={submit} submitLabel={t("auth.reset.submit")} loading={loading} error={error}>
+        <InputPassword
+          label={t("auth.field.newPassword")}
           value={password}
           onChange={setPassword}
           autoComplete="new-password"
-          helperText="8 caractères minimum"
+          helperText={t("auth.field.passwordHint")}
           required
         />
-        <TextField
-          label="Confirmation"
-          type="password"
+        <InputPassword
+          label={t("auth.field.confirm")}
           value={confirm}
           onChange={setConfirm}
           autoComplete="new-password"
           required
         />
-        <Feedback error={error} />
-        <Button type="submit" loading={loading} fullWidth>
-          Définir le mot de passe
-        </Button>
-      </form>
-      <nav className="links">
-        <Link to="/login">Retour à la connexion</Link>
-      </nav>
-    </>
+      </Form>
+    </PageContent>
   );
 }

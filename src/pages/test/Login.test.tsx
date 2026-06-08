@@ -2,18 +2,21 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import Login from "./Login";
-import * as authApi from "../api/auth";
-import * as navigation from "../lib/navigation";
+import { Providers } from "../../test/Providers";
+import Login from "../Login";
+import * as authApi from "../../api/auth";
+import * as navigation from "../../lib/navigation";
 
-vi.mock("../api/auth", { spy: true });
-vi.mock("../lib/navigation", { spy: true });
+vi.mock("../../api/auth", { spy: true });
+vi.mock("../../lib/navigation", { spy: true });
 
 function renderLogin(url = "/login") {
   return render(
-    <MemoryRouter initialEntries={[url]}>
-      <Login />
-    </MemoryRouter>
+    <Providers>
+      <MemoryRouter initialEntries={[url]}>
+        <Login />
+      </MemoryRouter>
+    </Providers>
   );
 }
 

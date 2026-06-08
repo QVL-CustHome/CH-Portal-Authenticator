@@ -6,6 +6,7 @@ import { ApiError, register } from "../api/auth";
 export function useRegister() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -14,6 +15,10 @@ export function useRegister() {
 
   async function submit() {
     setError(null);
+    if (name.trim() === "") {
+      setError(t("auth.register.nameRequired"));
+      return;
+    }
     if (password !== confirm) {
       setError(t("auth.passwordMismatch"));
       return;
@@ -24,7 +29,7 @@ export function useRegister() {
     }
     setLoading(true);
     try {
-      await register(email, password);
+      await register(name.trim(), email, password);
       navigate("/login", { replace: true });
     } catch (err) {
       setError(
@@ -36,5 +41,17 @@ export function useRegister() {
     }
   }
 
-  return { email, setEmail, password, setPassword, confirm, setConfirm, error, loading, submit };
+  return {
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirm,
+    setConfirm,
+    error,
+    loading,
+    submit,
+  };
 }

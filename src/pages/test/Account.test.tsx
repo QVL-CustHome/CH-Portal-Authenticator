@@ -10,8 +10,9 @@ vi.mock("../../api/auth", { spy: true });
 
 const ME: authApi.Me = {
   user_id: "u1",
+  name: "Martin",
   email: "martin@custhome.fr",
-  roles: { custhome: "admin" },
+  roles: ["admin"],
   whitelist_only: false,
   created_at: "2026-06-01T10:00:00Z",
 };
@@ -43,11 +44,11 @@ describe("page Account", () => {
     vi.mocked(authApi.getMe).mockResolvedValue(ME);
     renderPage();
     expect(await screen.findByText("martin@custhome.fr")).toBeInTheDocument();
-    expect(screen.getByText("custhome : admin")).toBeInTheDocument();
+    expect(screen.getByText("admin")).toBeInTheDocument();
   });
 
   it("affiche un placeholder si aucun role", async () => {
-    vi.mocked(authApi.getMe).mockResolvedValue({ ...ME, roles: {} });
+    vi.mocked(authApi.getMe).mockResolvedValue({ ...ME, roles: [] });
     renderPage();
     expect(await screen.findByText("Aucun rôle attribué")).toBeInTheDocument();
   });

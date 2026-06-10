@@ -7,6 +7,10 @@ export const messages: ChLocaleMessages = {
     "auth.login.title": "Connexion",
     "auth.login.submit": "Se connecter",
     "auth.login.error": "Email ou mot de passe incorrect.",
+    "auth.login.accountDisabled": "Ce compte a été désactivé. Contactez un administrateur.",
+    "auth.pending.title": "Compte en attente",
+    "auth.pending.message":
+      "Votre compte a bien été créé mais il est en attente de validation par un administrateur. Vous recevrez un email lorsque votre compte sera activé.",
     "auth.register.title": "Créer un compte",
     "auth.register.submit": "Créer le compte",
     "auth.register.conflict": "Un compte existe déjà avec cet email.",
@@ -48,6 +52,10 @@ export const messages: ChLocaleMessages = {
     "auth.login.title": "Sign in",
     "auth.login.submit": "Sign in",
     "auth.login.error": "Incorrect email or password.",
+    "auth.login.accountDisabled": "This account has been disabled. Please contact an administrator.",
+    "auth.pending.title": "Account pending",
+    "auth.pending.message":
+      "Your account has been created but is awaiting administrator approval. You will receive an email once your account is activated.",
     "auth.register.title": "Create an account",
     "auth.register.submit": "Create account",
     "auth.register.conflict": "An account already exists with this email.",

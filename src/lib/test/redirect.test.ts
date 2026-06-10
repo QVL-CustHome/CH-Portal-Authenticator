@@ -13,11 +13,11 @@ describe("safeRedirect (anti open-redirect)", () => {
   });
 
   it("accepte une URL absolue vers un portail de confiance (allowlist)", () => {
-    expect(safeRedirect("http://localhost:3001/dashboard")).toBe(
-      "http://localhost:3001/dashboard"
+    expect(safeRedirect("http://localhost:3201/dashboard")).toBe(
+      "http://localhost:3201/dashboard"
     );
-    expect(safeRedirect("http://localhost:3001/users?status=pending_validation")).toBe(
-      "http://localhost:3001/users?status=pending_validation"
+    expect(safeRedirect("http://localhost:3201/users?status=pending_validation")).toBe(
+      "http://localhost:3201/users?status=pending_validation"
     );
   });
 

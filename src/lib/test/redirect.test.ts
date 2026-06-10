@@ -12,9 +12,19 @@ describe("safeRedirect (anti open-redirect)", () => {
     expect(safeRedirect("")).toBe("/account");
   });
 
-  it("rejette les URL absolues externes", () => {
+  it("accepte une URL absolue vers un portail de confiance (allowlist)", () => {
+    expect(safeRedirect("http://localhost:3001/dashboard")).toBe(
+      "http://localhost:3001/dashboard"
+    );
+    expect(safeRedirect("http://localhost:3001/users?status=pending_validation")).toBe(
+      "http://localhost:3001/users?status=pending_validation"
+    );
+  });
+
+  it("rejette les URL absolues externes (hors allowlist)", () => {
     expect(safeRedirect("http://evil.example")).toBe("/account");
     expect(safeRedirect("https://evil.example/login")).toBe("/account");
+    expect(safeRedirect("http://localhost:9999/steal")).toBe("/account");
   });
 
   it("rejette les URL protocol-relative (//)", () => {

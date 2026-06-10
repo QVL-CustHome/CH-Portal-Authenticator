@@ -23,6 +23,7 @@ function renderRegister() {
 
 async function fill(password: string, confirm = password) {
   const user = userEvent.setup();
+  await user.type(screen.getByLabelText(/^nom/i), "Martin");
   await user.type(screen.getByLabelText(/^email/i), "nouveau@custhome.fr");
   await user.type(screen.getByLabelText(/^mot de passe/i), password);
   await user.type(screen.getByLabelText(/confirmation/i), confirm);
@@ -40,6 +41,7 @@ describe("page Register", () => {
     await fill("secret123");
     expect(await screen.findByText("page login")).toBeInTheDocument();
     expect(authApi.register).toHaveBeenCalledWith(
+      "Martin",
       "nouveau@custhome.fr",
       "secret123"
     );

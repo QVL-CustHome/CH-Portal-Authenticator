@@ -1,11 +1,29 @@
-import { Form, InputEmail, InputPassword, PageContent, useTranslation } from "@custhome/ui";
+import {
+  Form,
+  InputEmail,
+  InputPassword,
+  InputText,
+  PageContent,
+  useTranslation,
+} from "@custhome/ui";
 import AuthNav from "../components/AuthNav";
 import { useRegister } from "../hooks/useRegister";
 
 export default function Register() {
   const { t } = useTranslation();
-  const { email, setEmail, password, setPassword, confirm, setConfirm, error, loading, submit } =
-    useRegister();
+  const {
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirm,
+    setConfirm,
+    error,
+    loading,
+    submit,
+  } = useRegister();
   return (
     <PageContent
       title={t("auth.register.title")}
@@ -17,6 +35,7 @@ export default function Register() {
         loading={loading}
         error={error}
       >
+        <InputText label={t("auth.field.name")} value={name} onChange={setName} required />
         <InputEmail label={t("auth.field.email")} value={email} onChange={setEmail} required />
         <InputPassword
           label={t("auth.field.password")}

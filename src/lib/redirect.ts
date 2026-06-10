@@ -5,7 +5,7 @@
 // mécanisme est commun à tous les portails : chacun appelle
 // `…/login?redirect=<son URL>`, le portail d'auth renvoie l'utilisateur chez lui.
 // Toute autre cible retombe sur /account.
-const DEFAULT_TRUSTED_ORIGINS = "http://localhost:3001";
+const DEFAULT_TRUSTED_ORIGINS = "http://localhost:3201";
 
 const trustedOrigins = (
   import.meta.env.VITE_TRUSTED_REDIRECT_ORIGINS ?? DEFAULT_TRUSTED_ORIGINS

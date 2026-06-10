@@ -40,10 +40,13 @@ describe("client API /api/auth", () => {
 
   it("register appelle POST /api/auth/register", async () => {
     const fetchMock = mockFetch(201, {});
-    await register("a@b.fr", "secret123");
+    await register("Alice", "a@b.fr", "secret123");
     expect(fetchMock).toHaveBeenCalledWith(
       "/api/auth/register",
-      expect.objectContaining({ method: "POST" })
+      expect.objectContaining({
+        method: "POST",
+        body: JSON.stringify({ name: "Alice", email: "a@b.fr", password: "secret123" }),
+      })
     );
   });
 
@@ -89,7 +92,7 @@ describe("client API /api/auth", () => {
 
   it("expose le message d'erreur du corps JSON si present", async () => {
     mockFetch(409, { error: "email deja utilise" });
-    await expect(register("a@b.fr", "x".repeat(8))).rejects.toThrow(
+    await expect(register("Bob", "a@b.fr", "x".repeat(8))).rejects.toThrow(
       "email deja utilise"
     );
   });

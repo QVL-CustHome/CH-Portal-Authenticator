@@ -2,15 +2,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// En dev le front tourne sur :3000 (auth_front_url du Gateway) et proxifie
+// En dev le front tourne sur :3200 (auth_front_url du Gateway) et proxifie
 // directement /api vers le Gateway - meme comportement que server.js en prod.
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000,
+    port: 3200,
     proxy: {
       "/api": {
-        target: process.env.GATEWAY_URL ?? "http://localhost:8080",
+        target: process.env.GATEWAY_URL ?? "http://localhost:8180",
         changeOrigin: true,
       },
     },

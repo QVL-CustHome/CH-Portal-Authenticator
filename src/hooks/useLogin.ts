@@ -1,14 +1,13 @@
 import { useTranslation } from "@custhome/ui";
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ApiError, login } from "../api/auth";
 import { navigateTo } from "../lib/navigation";
-import { safeRedirect } from "../lib/redirect";
+import { getRedirectTarget, safeRedirect } from "../lib/redirect";
 
 export function useLogin() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -19,7 +18,7 @@ export function useLogin() {
     setLoading(true);
     try {
       await login(email, password);
-      navigateTo(safeRedirect(searchParams.get("redirect")));
+      navigateTo(safeRedirect(getRedirectTarget()));
     } catch (err) {
       if (err instanceof ApiError && err.message === "account_pending") {
         navigate("/pending");

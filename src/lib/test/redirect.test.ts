@@ -1,5 +1,9 @@
-import { describe, expect, it } from "vitest";
-import { safeRedirect } from "../redirect";
+import { describe, expect, it, afterEach } from "vitest";
+import { safeRedirect, getRedirectTarget } from "../redirect";
+
+afterEach(() => {
+  document.cookie = "ch_redirect=; path=/; max-age=0";
+});
 
 describe("safeRedirect (anti open-redirect)", () => {
   it("accepte un chemin relatif interne", () => {
@@ -33,5 +37,27 @@ describe("safeRedirect (anti open-redirect)", () => {
 
   it("rejette les schemes exotiques", () => {
     expect(safeRedirect("javascript:alert(1)")).toBe("/account");
+  });
+});
+
+describe("getRedirectTarget (cookie)", () => {
+  it("retourne null sans cookie", () => {
+    expect(getRedirectTarget()).toBeNull();
+  });
+
+  it("lit et decode le cookie ch_redirect", () => {
+    document.cookie = `ch_redirect=${encodeURIComponent("http://localhost:3201/users")}; path=/`;
+    expect(getRedirectTarget()).toBe("http://localhost:3201/users");
+  });
+
+  it("supprime le cookie apres lecture", () => {
+    document.cookie = `ch_redirect=${encodeURIComponent("/dashboard")}; path=/`;
+    getRedirectTarget();
+    expect(getRedirectTarget()).toBeNull();
+  });
+
+  it("retourne null pour une valeur mal encodee", () => {
+    document.cookie = "ch_redirect=%E0%A4%A; path=/";
+    expect(getRedirectTarget()).toBeNull();
   });
 });

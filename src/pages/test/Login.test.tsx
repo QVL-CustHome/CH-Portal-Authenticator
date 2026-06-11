@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
@@ -32,10 +32,15 @@ beforeEach(() => {
   vi.mocked(navigation.navigateTo).mockImplementation(() => {});
 });
 
+afterEach(() => {
+  document.cookie = "ch_redirect=; path=/; max-age=0";
+});
+
 describe("page Login", () => {
-  it("connecte puis redirige vers ?redirect= (chemin interne)", async () => {
+  it("connecte puis redirige vers le cookie ch_redirect (chemin interne)", async () => {
     vi.mocked(authApi.login).mockResolvedValue({});
-    renderLogin("/login?redirect=/api/users/42");
+    document.cookie = `ch_redirect=${encodeURIComponent("/api/users/42")}; path=/`;
+    renderLogin();
     await fillAndSubmit();
     await waitFor(() => {
       expect(navigation.navigateTo).toHaveBeenCalledWith("/api/users/42");
@@ -43,7 +48,7 @@ describe("page Login", () => {
     expect(authApi.login).toHaveBeenCalledWith("a@b.fr", "secret123");
   });
 
-  it("redirige vers /account sans parametre redirect", async () => {
+  it("redirige vers /account sans cookie ch_redirect", async () => {
     vi.mocked(authApi.login).mockResolvedValue({});
     renderLogin();
     await fillAndSubmit();
@@ -52,9 +57,10 @@ describe("page Login", () => {
     });
   });
 
-  it("neutralise un redirect externe (open redirect)", async () => {
+  it("neutralise un redirect externe dans le cookie (open redirect)", async () => {
     vi.mocked(authApi.login).mockResolvedValue({});
-    renderLogin("/login?redirect=https://evil.example");
+    document.cookie = `ch_redirect=${encodeURIComponent("https://evil.example")}; path=/`;
+    renderLogin();
     await fillAndSubmit();
     await waitFor(() => {
       expect(navigation.navigateTo).toHaveBeenCalledWith("/account");

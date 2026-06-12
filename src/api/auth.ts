@@ -1,8 +1,3 @@
-// Client API du portail - tous les appels passent par le Gateway via /api/auth/*
-// (route /api/auth du Gateway, strip_prefix vers CH-Api-Authenticator).
-// Les tokens sont poses en cookies HttpOnly (ch_token / ch_refresh) par l'Authenticator :
-// le front ne manipule jamais de token directement.
-
 export interface Me {
   user_id: string;
   name: string;
@@ -34,7 +29,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
       if (typeof body?.error === "string") message = body.error;
       else if (typeof body?.message === "string") message = body.message;
     } catch {
-      // corps non JSON : on garde le message generique
+
     }
     throw new ApiError(res.status, message);
   }

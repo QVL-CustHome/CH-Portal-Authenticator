@@ -8,6 +8,7 @@ export const messages: ChLocaleMessages = {
     "auth.login.submit": "Se connecter",
     "auth.login.error": "Email ou mot de passe incorrect.",
     "auth.login.accountDisabled": "Ce compte a été désactivé. Contactez un administrateur.",
+    "auth.login.deviceNotAllowed": "Vous n'êtes pas autorisé à vous connecter avec cet appareil.",
     "auth.pending.title": "Compte en attente",
     "auth.pending.message":
       "Votre compte a bien été créé mais il est en attente de validation par un administrateur. Vous recevrez un email lorsque votre compte sera activé.",
@@ -53,6 +54,7 @@ export const messages: ChLocaleMessages = {
     "auth.login.submit": "Sign in",
     "auth.login.error": "Incorrect email or password.",
     "auth.login.accountDisabled": "This account has been disabled. Please contact an administrator.",
+    "auth.login.deviceNotAllowed": "You are not allowed to sign in from this device.",
     "auth.pending.title": "Account pending",
     "auth.pending.message":
       "Your account has been created but is awaiting administrator approval. You will receive an email once your account is activated.",

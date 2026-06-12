@@ -26,6 +26,8 @@ export function useLogin() {
       }
       if (err instanceof ApiError && err.message === "account_disabled") {
         setError(t("auth.login.accountDisabled"));
+      } else if (err instanceof ApiError && err.message === "device_not_allowed") {
+        setError(t("auth.login.deviceNotAllowed"));
       } else {
         setError(t("auth.login.error"));
       }

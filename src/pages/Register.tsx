@@ -3,6 +3,7 @@ import {
   InputEmail,
   InputPassword,
   InputText,
+  NAME_REGEX,
   PageContent,
   useTranslation,
 } from "@custhome/ui";
@@ -35,7 +36,14 @@ export default function Register() {
         loading={loading}
         error={error}
       >
-        <InputText label={t("auth.field.name")} value={name} onChange={setName} required />
+        <InputText
+          label={t("auth.field.name")}
+          value={name}
+          onChange={setName}
+          required
+          pattern={NAME_REGEX}
+          patternMessage={t("auth.field.nameInvalid")}
+        />
         <InputEmail label={t("auth.field.email")} value={email} onChange={setEmail} required />
         <InputPassword
           label={t("auth.field.password")}

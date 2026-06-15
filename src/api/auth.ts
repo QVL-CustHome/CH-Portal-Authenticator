@@ -10,7 +10,8 @@ export interface Me {
 export class ApiError extends Error {
   constructor(
     public status: number,
-    message: string
+    message: string,
+    public code?: string
   ) {
     super(message);
   }
@@ -24,14 +25,16 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   });
   if (!res.ok) {
     let message = `Erreur ${res.status}`;
+    let code: string | undefined;
     try {
       const body = await res.json();
-      if (typeof body?.error === "string") message = body.error;
-      else if (typeof body?.message === "string") message = body.message;
+      if (typeof body?.error === "string") code = body.error;
+      if (typeof body?.message === "string") message = body.message;
+      else if (code) message = code;
     } catch {
 
     }
-    throw new ApiError(res.status, message);
+    throw new ApiError(res.status, message, code);
   }
   if (res.status === 204) return undefined as T;
   const text = await res.text();

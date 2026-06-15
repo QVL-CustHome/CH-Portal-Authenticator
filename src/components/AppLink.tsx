@@ -9,7 +9,7 @@ interface AppLinkProps {
 
 export default function AppLink({ to, children }: AppLinkProps) {
   return (
-    <Link component={RouterLink} to={to} size="small">
+    <Link component={RouterLink} to={to} size="small" color="primary">
       {children}
     </Link>
   );

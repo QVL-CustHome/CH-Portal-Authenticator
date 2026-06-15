@@ -20,13 +20,13 @@ export function useLogin() {
       await login(email, password);
       navigateTo(safeRedirect(getRedirectTarget()));
     } catch (err) {
-      if (err instanceof ApiError && err.message === "account_pending") {
+      if (err instanceof ApiError && err.code === "account_pending") {
         navigate("/pending");
         return;
       }
-      if (err instanceof ApiError && err.message === "account_disabled") {
+      if (err instanceof ApiError && err.code === "account_disabled") {
         setError(t("auth.login.accountDisabled"));
-      } else if (err instanceof ApiError && err.message === "device_not_allowed") {
+      } else if (err instanceof ApiError && err.code === "device_not_allowed") {
         setError(t("auth.login.deviceNotAllowed"));
       } else {
         setError(t("auth.login.error"));

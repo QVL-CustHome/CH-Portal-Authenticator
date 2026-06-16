@@ -18,7 +18,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "@custhome/ui": "github:QVL-CustHome/CH-UI-Library#v0.4.0",
+    "@custhome/ui": "github:QVL-CustHome/CH-UI-Library#v0.5.0",
     "ch-portail-admin": "file:../CH-Portail-Admin",
     "express": "^5.1.0",
     "http-proxy-middleware": "^3.0.5",

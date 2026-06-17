@@ -1,17 +1,37 @@
 import {
+  Feedback,
   Form,
   InputEmail,
   InputPassword,
   InputText,
   NAME_REGEX,
   PageContent,
+  Spinner,
   useTranslation,
 } from "@custhome/ui";
+import { useEffect, useState } from "react";
 import AuthNav from "../components/AuthNav";
+import { getRegistrationEnabled } from "../api/auth";
 import { useRegister } from "../hooks/useRegister";
 
 export default function Register() {
   const { t } = useTranslation();
+  const [registrationEnabled, setRegistrationEnabled] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    getRegistrationEnabled()
+      .then((res) => {
+        if (active) setRegistrationEnabled(res.enabled);
+      })
+      .catch(() => {
+        if (active) setRegistrationEnabled(true);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const {
     name,
     setName,
@@ -30,12 +50,17 @@ export default function Register() {
       title={t("auth.register.title")}
       footer={<AuthNav links={[{ to: "/login", label: t("auth.link.haveAccount") }]} />}
     >
-      <Form
-        onSubmit={submit}
-        submitLabel={t("auth.register.submit")}
-        loading={loading}
-        error={error}
-      >
+      {registrationEnabled === null ? (
+        <Spinner />
+      ) : !registrationEnabled ? (
+        <Feedback severity="info">{t("auth.register.disabled")}</Feedback>
+      ) : (
+        <Form
+          onSubmit={submit}
+          submitLabel={t("auth.register.submit")}
+          loading={loading}
+          error={error}
+        >
         <InputText
           label={t("auth.field.name")}
           value={name}
@@ -60,7 +85,8 @@ export default function Register() {
           autoComplete="new-password"
           required
         />
-      </Form>
+        </Form>
+      )}
     </PageContent>
   );
 }

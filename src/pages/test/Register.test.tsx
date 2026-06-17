@@ -23,6 +23,7 @@ function renderRegister() {
 
 async function fill(password: string, confirm = password) {
   const user = userEvent.setup();
+  await screen.findByLabelText(/^nom/i);
   await user.type(screen.getByLabelText(/^nom/i), "Martin");
   await user.type(screen.getByLabelText(/^email/i), "nouveau@custhome.fr");
   await user.type(screen.getByLabelText(/^mot de passe/i), password);
@@ -32,6 +33,7 @@ async function fill(password: string, confirm = password) {
 
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.mocked(authApi.getRegistrationEnabled).mockResolvedValue({ enabled: true });
 });
 
 describe("page Register", () => {
@@ -45,6 +47,15 @@ describe("page Register", () => {
       "nouveau@custhome.fr",
       "secret123"
     );
+  });
+
+  it("masque le formulaire quand les inscriptions sont fermees", async () => {
+    vi.mocked(authApi.getRegistrationEnabled).mockResolvedValue({ enabled: false });
+    renderRegister();
+    expect(
+      await screen.findByText("Les inscriptions sont actuellement fermées.")
+    ).toBeInTheDocument();
+    expect(screen.queryByLabelText(/^nom/i)).not.toBeInTheDocument();
   });
 
   it("bloque si les mots de passe different (sans appel API)", async () => {

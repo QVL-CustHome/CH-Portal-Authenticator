@@ -69,6 +69,14 @@ export function resetPassword(token: string, newPassword: string) {
   });
 }
 
+export interface RegistrationSetting {
+  enabled: boolean;
+}
+
+export function getRegistrationEnabled() {
+  return request<RegistrationSetting>("/settings/registration");
+}
+
 export function getMe() {
   return request<Me>("/me");
 }

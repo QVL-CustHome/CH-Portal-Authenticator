@@ -13,7 +13,7 @@ export default function ResetPassword() {
         title={t("auth.reset.title")}
         footer={<AuthNav links={[{ to: "/forgot-password", label: t("auth.link.newRequest") }]} />}
       >
-        <Feedback error={t("auth.reset.tokenMissing")} />
+        <Feedback severity="error">{t("auth.reset.tokenMissing")}</Feedback>
       </PageContent>
     );
   }

@@ -1,4 +1,4 @@
-const DEFAULT_TRUSTED_ORIGINS = "http://localhost:3201";
+const DEFAULT_TRUSTED_ORIGINS = "http://localhost:3201,http://localhost:3202";
 
 const trustedOrigins = (
   import.meta.env.VITE_TRUSTED_REDIRECT_ORIGINS ?? DEFAULT_TRUSTED_ORIGINS

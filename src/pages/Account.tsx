@@ -9,7 +9,7 @@ export default function Account() {
   return (
     <PageContent title={t("auth.account.title")}>
       {error ? (
-        <Feedback error={error} />
+        <Feedback severity="error">{error}</Feedback>
       ) : !me ? (
         <Spinner label={t("auth.loading")} />
       ) : (

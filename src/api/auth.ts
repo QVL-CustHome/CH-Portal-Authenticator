@@ -1,3 +1,7 @@
+import { ApiError, createApiClient } from "@custhome/ui";
+
+export { ApiError };
+
 export interface Me {
   user_id: string;
   name: string;
@@ -7,39 +11,8 @@ export interface Me {
   created_at: string;
 }
 
-export class ApiError extends Error {
-  constructor(
-    public status: number,
-    message: string,
-    public code?: string
-  ) {
-    super(message);
-  }
-}
-
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`/api/auth${path}`, {
-    headers: { "Content-Type": "application/json" },
-    credentials: "same-origin",
-    ...init,
-  });
-  if (!res.ok) {
-    let message = `Erreur ${res.status}`;
-    let code: string | undefined;
-    try {
-      const body = await res.json();
-      if (typeof body?.error === "string") code = body.error;
-      if (typeof body?.message === "string") message = body.message;
-      else if (code) message = code;
-    } catch {
-
-    }
-    throw new ApiError(res.status, message, code);
-  }
-  if (res.status === 204) return undefined as T;
-  const text = await res.text();
-  return (text ? JSON.parse(text) : undefined) as T;
-}
+const client = createApiClient({ basePath: "/api/auth" });
+const request = client.request;
 
 export function login(email: string, password: string) {
   return request<unknown>("/login", {

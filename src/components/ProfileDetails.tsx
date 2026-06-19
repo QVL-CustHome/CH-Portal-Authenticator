@@ -1,4 +1,4 @@
-import { DescriptionList, useTranslation } from "@custhome/ui";
+import { BulletList, DescriptionList, useTranslation } from "@custhome/ui";
 import type { ReactNode } from "react";
 import type { Me } from "../api/auth";
 
@@ -13,11 +13,9 @@ export default function ProfileDetails({ me }: ProfileDetailsProps) {
     me.roles.length === 0 ? (
       <em>{t("auth.account.noRoles")}</em>
     ) : (
-      <ul>
-        {me.roles.map((role) => (
-          <li key={role}>{role}</li>
-        ))}
-      </ul>
+      <BulletList
+        items={me.roles.map((role) => ({ key: role, content: role }))}
+      />
     );
 
   return (

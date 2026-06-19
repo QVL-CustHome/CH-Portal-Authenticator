@@ -8,7 +8,7 @@ export default function PendingValidation() {
       title={t("auth.pending.title")}
       footer={<AuthNav links={[{ to: "/login", label: t("auth.link.login") }]} />}
     >
-      <Feedback info={t("auth.pending.message")} />
+      <Feedback severity="info">{t("auth.pending.message")}</Feedback>
     </PageContent>
   );
 }

@@ -1,8 +1,18 @@
 import { describe, expect, it, afterEach } from "vitest";
+import { REDIRECT_INTENT_PARAM } from "@custhome/ui";
 import { safeRedirect, getRedirectTarget } from "../redirect";
+
+function setRedirectIntent(): void {
+  window.history.replaceState({}, "", `/login?${REDIRECT_INTENT_PARAM}=1`);
+}
+
+function setNoRedirectIntent(): void {
+  window.history.replaceState({}, "", "/login");
+}
 
 afterEach(() => {
   document.cookie = "ch_redirect=; path=/; max-age=0";
+  window.history.replaceState({}, "", "/login");
 });
 
 describe("safeRedirect (anti open-redirect)", () => {
@@ -45,18 +55,27 @@ describe("getRedirectTarget (cookie)", () => {
     expect(getRedirectTarget()).toBeNull();
   });
 
-  it("lit et decode le cookie ch_redirect", () => {
+  it("lit et decode le cookie ch_redirect quand le marqueur redirect=1 est present", () => {
+    setRedirectIntent();
     document.cookie = `ch_redirect=${encodeURIComponent("http://localhost:3201/users")}; path=/`;
     expect(getRedirectTarget()).toBe("http://localhost:3201/users");
   });
 
+  it("ignore un cookie residuel sans le marqueur redirect=1", () => {
+    setNoRedirectIntent();
+    document.cookie = `ch_redirect=${encodeURIComponent("http://localhost:3201/users")}; path=/`;
+    expect(getRedirectTarget()).toBeNull();
+  });
+
   it("supprime le cookie apres lecture", () => {
+    setRedirectIntent();
     document.cookie = `ch_redirect=${encodeURIComponent("/dashboard")}; path=/`;
     getRedirectTarget();
     expect(getRedirectTarget()).toBeNull();
   });
 
   it("retourne null pour une valeur mal encodee", () => {
+    setRedirectIntent();
     document.cookie = "ch_redirect=%E0%A4%A; path=/";
     expect(getRedirectTarget()).toBeNull();
   });

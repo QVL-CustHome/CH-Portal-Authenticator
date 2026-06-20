@@ -1,4 +1,7 @@
-const DEFAULT_TRUSTED_ORIGINS = "http://localhost:3201,http://localhost:3202";
+import { REDIRECT_INTENT_PARAM } from "@custhome/ui";
+
+const DEFAULT_TRUSTED_ORIGINS =
+  "http://localhost:3201,http://localhost:3202,http://[::1]:3201,http://[::1]:3202";
 
 const trustedOrigins = (
   import.meta.env.VITE_TRUSTED_REDIRECT_ORIGINS ?? DEFAULT_TRUSTED_ORIGINS
@@ -7,10 +10,20 @@ const trustedOrigins = (
   .map((origin: string) => origin.trim())
   .filter(Boolean);
 
+function clearRedirectCookie(): void {
+  document.cookie = "ch_redirect=; path=/; max-age=0";
+}
+
+function hasRedirectIntent(): boolean {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(REDIRECT_INTENT_PARAM) === "1";
+}
+
 export function getRedirectTarget(): string | null {
   const match = document.cookie.match(/(?:^|;\s*)ch_redirect=([^;]*)/);
   if (!match) return null;
-  document.cookie = "ch_redirect=; path=/; max-age=0";
+  clearRedirectCookie();
+  if (!hasRedirectIntent()) return null;
   try {
     return decodeURIComponent(match[1]);
   } catch {

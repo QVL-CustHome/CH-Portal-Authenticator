@@ -2,6 +2,7 @@ import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
+import { REDIRECT_INTENT_PARAM } from "@custhome/ui";
 import { Providers } from "../../test/Providers";
 import Login from "../Login";
 import * as authApi from "../../api/auth";
@@ -9,6 +10,14 @@ import * as navigation from "../../lib/navigation";
 
 vi.mock("../../api/auth", { spy: true });
 vi.mock("../../lib/navigation", { spy: true });
+
+function setRedirectIntent(): void {
+  window.history.replaceState({}, "", `/login?${REDIRECT_INTENT_PARAM}=1`);
+}
+
+function setNoRedirectIntent(): void {
+  window.history.replaceState({}, "", "/login");
+}
 
 function renderLogin(url = "/login") {
   return render(
@@ -34,11 +43,13 @@ beforeEach(() => {
 
 afterEach(() => {
   document.cookie = "ch_redirect=; path=/; max-age=0";
+  window.history.replaceState({}, "", "/login");
 });
 
 describe("page Login", () => {
   it("connecte puis redirige vers le cookie ch_redirect (chemin interne)", async () => {
     vi.mocked(authApi.login).mockResolvedValue({});
+    setRedirectIntent();
     document.cookie = `ch_redirect=${encodeURIComponent("/api/users/42")}; path=/`;
     renderLogin();
     await fillAndSubmit();
@@ -46,6 +57,17 @@ describe("page Login", () => {
       expect(navigation.navigateTo).toHaveBeenCalledWith("/api/users/42");
     });
     expect(authApi.login).toHaveBeenCalledWith("a@b.fr", "secret123");
+  });
+
+  it("ignore un cookie ch_redirect residuel sans le marqueur redirect=1", async () => {
+    vi.mocked(authApi.login).mockResolvedValue({});
+    setNoRedirectIntent();
+    document.cookie = `ch_redirect=${encodeURIComponent("/api/users/42")}; path=/`;
+    renderLogin();
+    await fillAndSubmit();
+    await waitFor(() => {
+      expect(navigation.navigateTo).toHaveBeenCalledWith("/account");
+    });
   });
 
   it("redirige vers /account sans cookie ch_redirect", async () => {
@@ -59,6 +81,7 @@ describe("page Login", () => {
 
   it("neutralise un redirect externe dans le cookie (open redirect)", async () => {
     vi.mocked(authApi.login).mockResolvedValue({});
+    setRedirectIntent();
     document.cookie = `ch_redirect=${encodeURIComponent("https://evil.example")}; path=/`;
     renderLogin();
     await fillAndSubmit();

@@ -21,10 +21,20 @@ export function login(email: string, password: string) {
   });
 }
 
-export function register(name: string, email: string, password: string) {
+export function register(
+  name: string,
+  email: string,
+  password: string,
+  acceptedTermsVersion: string
+) {
   return request<unknown>("/register", {
     method: "POST",
-    body: JSON.stringify({ name, email, password }),
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      accepted_terms_version: acceptedTermsVersion,
+    }),
   });
 }
 

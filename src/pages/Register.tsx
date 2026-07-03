@@ -1,4 +1,5 @@
 import {
+  Checkbox,
   Feedback,
   Form,
   InputEmail,
@@ -11,6 +12,7 @@ import {
 } from "@custhome/ui";
 import { useEffect, useState } from "react";
 import AuthNav from "../components/AuthNav";
+import TermsCguLink from "../components/TermsCguLink";
 import { getRegistrationEnabled } from "../api/auth";
 import { useRegister } from "../hooks/useRegister";
 
@@ -41,6 +43,10 @@ export default function Register() {
     setPassword,
     confirm,
     setConfirm,
+    termsAccepted,
+    acceptTerms,
+    termsError,
+    submitDisabled,
     error,
     loading,
     submit,
@@ -59,6 +65,7 @@ export default function Register() {
           onSubmit={submit}
           submitLabel={t("auth.register.submit")}
           loading={loading}
+          submitDisabled={submitDisabled}
           error={error}
         >
         <InputText
@@ -84,6 +91,18 @@ export default function Register() {
           onChange={setConfirm}
           autoComplete="new-password"
           required
+        />
+        <Checkbox
+          checked={termsAccepted}
+          onChange={acceptTerms}
+          required
+          error={termsError}
+          label={
+            <>
+              {t("auth.register.terms.intro")}{" "}
+              <TermsCguLink>{t("auth.register.terms.linkText")}</TermsCguLink>
+            </>
+          }
         />
         </Form>
       )}

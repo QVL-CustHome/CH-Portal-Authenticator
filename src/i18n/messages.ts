@@ -18,6 +18,12 @@ export const messages: ChLocaleMessages = {
     "auth.register.error": "L'inscription a échoué. Réessayez.",
     "auth.register.nameRequired": "Le nom est requis.",
     "auth.register.disabled": "Les inscriptions sont actuellement fermées.",
+    "auth.register.terms.intro": "J'ai lu et j'accepte les",
+    "auth.register.terms.linkText": "conditions générales d'utilisation",
+    "auth.register.terms.required":
+      "Vous devez accepter les conditions générales d'utilisation pour créer un compte.",
+    "auth.register.terms.versionMismatch":
+      "Les conditions générales d'utilisation ont été mises à jour. Rechargez la page pour accepter la nouvelle version.",
     "auth.passwordMismatch": "Les mots de passe ne correspondent pas.",
     "auth.forgot.title": "Mot de passe oublié",
     "auth.forgot.submit": "Envoyer le lien",
@@ -169,6 +175,12 @@ export const messages: ChLocaleMessages = {
     "auth.register.error": "Registration failed. Please try again.",
     "auth.register.nameRequired": "Name is required.",
     "auth.register.disabled": "Sign-ups are currently closed.",
+    "auth.register.terms.intro": "I have read and accept the",
+    "auth.register.terms.linkText": "terms of use",
+    "auth.register.terms.required":
+      "You must accept the terms of use to create an account.",
+    "auth.register.terms.versionMismatch":
+      "The terms of use have been updated. Please reload the page to accept the new version.",
     "auth.passwordMismatch": "Passwords do not match.",
     "auth.forgot.title": "Forgot password",
     "auth.forgot.submit": "Send the link",

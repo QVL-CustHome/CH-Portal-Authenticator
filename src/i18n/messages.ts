@@ -140,7 +140,7 @@ export const messages: ChLocaleMessages = {
     "auth.legal.contact.phone.value":
       "[À COMPLÉTER PAR LE JURIDIQUE — numéro de téléphone]",
     "auth.legal.publicationDirector.title": "Directeur de la publication",
-    "auth.legal.publicationDirector.name.label": "Directeur de la publication",
+    "auth.legal.publicationDirector.name.label": "Nom",
     "auth.legal.publicationDirector.name.value":
       "[À COMPLÉTER PAR LE JURIDIQUE — nom du directeur de la publication]",
     "auth.legal.host.title": "Hébergeur",
@@ -290,7 +290,7 @@ export const messages: ChLocaleMessages = {
     "auth.legal.contact.phone.value":
       "[TO BE COMPLETED BY LEGAL — phone number]",
     "auth.legal.publicationDirector.title": "Publication director",
-    "auth.legal.publicationDirector.name.label": "Publication director",
+    "auth.legal.publicationDirector.name.label": "Name",
     "auth.legal.publicationDirector.name.value":
       "[TO BE COMPLETED BY LEGAL — publication director name]",
     "auth.legal.host.title": "Hosting provider",

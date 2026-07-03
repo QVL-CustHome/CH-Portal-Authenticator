@@ -1,12 +1,13 @@
-import { Feedback, Form, InputEmail, PageContent, useTranslation } from "@custhome/ui";
+import { Feedback, Form, InputEmail, useTranslation } from "@custhome/ui";
 import AuthNav from "../components/AuthNav";
+import AuthPageContent from "../components/AuthPageContent";
 import { useForgotPassword } from "../hooks/useForgotPassword";
 
 export default function ForgotPassword() {
   const { t } = useTranslation();
   const { email, setEmail, sent, loading, submit } = useForgotPassword();
   return (
-    <PageContent
+    <AuthPageContent
       title={t("auth.forgot.title")}
       footer={<AuthNav links={[{ to: "/login", label: t("auth.link.login") }]} />}
     >
@@ -17,6 +18,6 @@ export default function ForgotPassword() {
           <InputEmail label={t("auth.field.email")} value={email} onChange={setEmail} required />
         </Form>
       )}
-    </PageContent>
+    </AuthPageContent>
   );
 }

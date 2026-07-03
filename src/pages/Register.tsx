@@ -5,12 +5,12 @@ import {
   InputPassword,
   InputText,
   NAME_REGEX,
-  PageContent,
   Spinner,
   useTranslation,
 } from "@custhome/ui";
 import { useEffect, useState } from "react";
 import AuthNav from "../components/AuthNav";
+import AuthPageContent from "../components/AuthPageContent";
 import { getRegistrationEnabled } from "../api/auth";
 import { useRegister } from "../hooks/useRegister";
 
@@ -46,7 +46,7 @@ export default function Register() {
     submit,
   } = useRegister();
   return (
-    <PageContent
+    <AuthPageContent
       title={t("auth.register.title")}
       footer={<AuthNav links={[{ to: "/login", label: t("auth.link.haveAccount") }]} />}
     >
@@ -87,6 +87,6 @@ export default function Register() {
         />
         </Form>
       )}
-    </PageContent>
+    </AuthPageContent>
   );
 }

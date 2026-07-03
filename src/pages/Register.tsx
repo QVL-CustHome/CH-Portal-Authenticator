@@ -12,7 +12,7 @@ import {
 } from "@custhome/ui";
 import { useEffect, useState } from "react";
 import AuthNav from "../components/AuthNav";
-import TermsCguLink from "../components/TermsCguLink";
+import AppLink from "../components/AppLink";
 import { getRegistrationEnabled } from "../api/auth";
 import { useRegister } from "../hooks/useRegister";
 
@@ -100,7 +100,9 @@ export default function Register() {
           label={
             <>
               {t("auth.register.terms.intro")}{" "}
-              <TermsCguLink>{t("auth.register.terms.linkText")}</TermsCguLink>
+              <AppLink to="/cgu" newTab>
+                {t("auth.register.terms.linkText")}
+              </AppLink>
             </>
           }
         />

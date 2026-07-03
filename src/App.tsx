@@ -6,6 +6,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Account from "./pages/Account";
 import PendingValidation from "./pages/PendingValidation";
+import Cgu from "./pages/Cgu";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/pending" element={<PendingValidation />} />
+        <Route path="/cgu" element={<Cgu />} />
         <Route path="/account" element={<Account />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Route>

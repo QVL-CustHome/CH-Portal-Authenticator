@@ -159,6 +159,7 @@ export const messages: ChLocaleMessages = {
     "auth.legal.host.contact.label": "Contact",
     "auth.legal.host.contact.value":
       "[À COMPLÉTER PAR LE JURIDIQUE — téléphone ou adresse électronique de l'hébergeur]",
+    "auth.legal.footerLabel": "Liens légaux",
   },
   en: {
     "auth.login.title": "Sign in",
@@ -315,5 +316,6 @@ export const messages: ChLocaleMessages = {
     "auth.legal.host.contact.label": "Contact",
     "auth.legal.host.contact.value":
       "[TO BE COMPLETED BY LEGAL — hosting provider phone or email]",
+    "auth.legal.footerLabel": "Legal links",
   },
 };

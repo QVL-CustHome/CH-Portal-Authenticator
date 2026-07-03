@@ -1,4 +1,5 @@
-import { Button, Feedback, PageContent, Spinner, useTranslation } from "@custhome/ui";
+import { Button, Feedback, Spinner, useTranslation } from "@custhome/ui";
+import AuthPageContent from "../components/AuthPageContent";
 import ProfileDetails from "../components/ProfileDetails";
 import { useAccount } from "../hooks/useAccount";
 
@@ -7,7 +8,7 @@ export default function Account() {
   const { me, error, signOut } = useAccount();
 
   return (
-    <PageContent title={t("auth.account.title")}>
+    <AuthPageContent title={t("auth.account.title")}>
       {error ? (
         <Feedback severity="error">{error}</Feedback>
       ) : !me ? (
@@ -20,6 +21,6 @@ export default function Account() {
           </Button>
         </>
       )}
-    </PageContent>
+    </AuthPageContent>
   );
 }

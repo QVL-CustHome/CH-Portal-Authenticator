@@ -1,4 +1,5 @@
-import { PageContent, useTranslation } from "@custhome/ui";
+import { useTranslation } from "@custhome/ui";
+import AuthPageContent from "../components/AuthPageContent";
 import CguTerms from "../components/CguTerms";
 import LegalNotice from "../components/LegalNotice";
 import { useScrollToHash } from "../hooks/useScrollToHash";
@@ -8,9 +9,9 @@ export default function Cgu() {
   useScrollToHash();
 
   return (
-    <PageContent title={t("auth.cgu.title")}>
+    <AuthPageContent title={t("auth.cgu.title")}>
       <CguTerms />
       <LegalNotice />
-    </PageContent>
+    </AuthPageContent>
   );
 }

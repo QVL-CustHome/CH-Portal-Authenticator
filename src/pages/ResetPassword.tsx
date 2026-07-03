@@ -1,5 +1,6 @@
-import { Feedback, Form, InputPassword, PageContent, useTranslation } from "@custhome/ui";
+import { Feedback, Form, InputPassword, useTranslation } from "@custhome/ui";
 import AuthNav from "../components/AuthNav";
+import AuthPageContent from "../components/AuthPageContent";
 import { useResetPassword } from "../hooks/useResetPassword";
 
 export default function ResetPassword() {
@@ -9,17 +10,17 @@ export default function ResetPassword() {
 
   if (!token) {
     return (
-      <PageContent
+      <AuthPageContent
         title={t("auth.reset.title")}
         footer={<AuthNav links={[{ to: "/forgot-password", label: t("auth.link.newRequest") }]} />}
       >
         <Feedback severity="error">{t("auth.reset.tokenMissing")}</Feedback>
-      </PageContent>
+      </AuthPageContent>
     );
   }
 
   return (
-    <PageContent
+    <AuthPageContent
       title={t("auth.reset.title")}
       footer={<AuthNav links={[{ to: "/login", label: t("auth.link.login") }]} />}
     >
@@ -40,6 +41,6 @@ export default function ResetPassword() {
           required
         />
       </Form>
-    </PageContent>
+    </AuthPageContent>
   );
 }

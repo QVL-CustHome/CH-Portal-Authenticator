@@ -1,12 +1,13 @@
-import { Form, InputEmail, InputPassword, PageContent, useTranslation } from "@custhome/ui";
+import { Form, InputEmail, InputPassword, useTranslation } from "@custhome/ui";
 import AuthNav from "../components/AuthNav";
+import AuthPageContent from "../components/AuthPageContent";
 import { useLogin } from "../hooks/useLogin";
 
 export default function Login() {
   const { t } = useTranslation();
   const { email, setEmail, password, setPassword, error, loading, submit } = useLogin();
   return (
-    <PageContent
+    <AuthPageContent
       title={t("auth.login.title")}
       footer={
         <AuthNav
@@ -27,6 +28,6 @@ export default function Login() {
           required
         />
       </Form>
-    </PageContent>
+    </AuthPageContent>
   );
 }

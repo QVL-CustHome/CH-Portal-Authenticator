@@ -50,6 +50,109 @@ export const messages: ChLocaleMessages = {
     "auth.link.haveAccount": "Déjà un compte ? Se connecter",
     "auth.link.newRequest": "Nouvelle demande",
     "auth.loading": "Chargement",
+    "auth.cgu.title": "Conditions Générales d'Utilisation",
+    "auth.cgu.versionLabel": "Version {version} — en vigueur au {date}",
+    "auth.cgu.object.title": "1. Objet",
+    "auth.cgu.object.body":
+      "Les présentes Conditions Générales d'Utilisation (les « CGU ») ont pour objet de définir les modalités et conditions dans lesquelles l'Utilisateur accède et utilise la suite de services en ligne CustHome (les « Services »), ainsi que les droits et obligations respectifs de l'Éditeur et de l'Utilisateur.",
+    "auth.cgu.acceptance.title": "2. Acceptation des CGU",
+    "auth.cgu.acceptance.body":
+      "L'accès aux Services est subordonné à l'acceptation sans réserve des présentes CGU. En créant un compte ou en utilisant les Services, l'Utilisateur reconnaît avoir pris connaissance des CGU et en accepter l'intégralité des stipulations. L'Utilisateur qui n'accepte pas les CGU doit renoncer à l'accès aux Services.",
+    "auth.cgu.services.title": "3. Description des Services",
+    "auth.cgu.services.intro":
+      "CustHome est une suite de portails accessibles en ligne comprenant notamment :",
+    "auth.cgu.services.authenticator":
+      "un service d'authentification et de gestion de compte permettant de créer et d'administrer un identifiant unique d'accès aux Services ;",
+    "auth.cgu.services.drive":
+      "Drive, un service de stockage et de partage de fichiers en ligne dans la limite de 10 Go par compte ;",
+    "auth.cgu.services.budgy":
+      "Budgy, un service de gestion de budget permettant l'agrégation d'informations bancaires par l'intermédiaire de prestataires agréés au titre de la directive sur les services de paiement (DSP2) ;",
+    "auth.cgu.services.admin":
+      "un portail d'administration réservé aux Utilisateurs disposant des habilitations correspondantes.",
+    "auth.cgu.account.title": "4. Compte utilisateur",
+    "auth.cgu.account.body":
+      "L'accès à certains Services nécessite la création d'un compte. L'Utilisateur s'engage à fournir des informations exactes, complètes et à jour lors de son inscription et à les actualiser en cas de changement. L'Utilisateur est seul responsable de la confidentialité de ses identifiants et de toute activité réalisée depuis son compte. Toute utilisation non autorisée doit être signalée sans délai à l'Éditeur.",
+    "auth.cgu.obligations.title": "5. Obligations de l'Utilisateur",
+    "auth.cgu.obligations.intro":
+      "L'Utilisateur s'engage à utiliser les Services conformément à leur destination, à la réglementation applicable et aux présentes CGU. Il s'interdit notamment :",
+    "auth.cgu.obligations.item1":
+      "de porter atteinte aux droits de tiers ou à l'ordre public ;",
+    "auth.cgu.obligations.item2":
+      "de diffuser des contenus illicites, préjudiciables ou contraires aux bonnes mœurs ;",
+    "auth.cgu.obligations.item3":
+      "de perturber le fonctionnement des Services ou d'en compromettre la sécurité ;",
+    "auth.cgu.obligations.item4":
+      "d'accéder aux Services par des moyens automatisés non autorisés ou de contourner les mesures techniques de protection.",
+    "auth.cgu.driveStorage.title": "6. Stockage et partage de fichiers (Drive)",
+    "auth.cgu.driveStorage.body":
+      "L'Utilisateur demeure seul responsable des fichiers qu'il stocke, partage ou diffuse via le service Drive, ainsi que du respect des droits attachés à ces contenus. L'espace de stockage est limité à 10 Go par compte. L'Éditeur se réserve le droit de suspendre l'accès à tout contenu manifestement illicite qui lui serait signalé, dans les conditions prévues par la loi.",
+    "auth.cgu.banking.title": "7. Agrégation bancaire (Budgy)",
+    "auth.cgu.banking.body":
+      "Le service Budgy permet, à la demande de l'Utilisateur, l'agrégation d'informations relatives à ses comptes bancaires par l'intermédiaire de prestataires de services d'information sur les comptes agréés au titre de la directive (UE) 2015/2366 (DSP2). L'Utilisateur reste libre d'activer ou de désactiver cette fonctionnalité à tout moment. L'Éditeur n'exécute aucune opération de paiement et n'a pas accès aux moyens de paiement de l'Utilisateur.",
+    "auth.cgu.personalData.title": "8. Données personnelles",
+    "auth.cgu.personalData.body":
+      "Les données à caractère personnel de l'Utilisateur sont traitées dans le respect de la réglementation applicable, notamment le Règlement (UE) 2016/679 (RGPD). Les finalités des traitements, les durées de conservation ainsi que les modalités d'exercice des droits de l'Utilisateur sont détaillées dans la Politique de confidentialité, accessible séparément et complétant les présentes CGU.",
+    "auth.cgu.intellectualProperty.title": "9. Propriété intellectuelle",
+    "auth.cgu.intellectualProperty.body":
+      "Les Services, leur architecture, leurs interfaces, leurs marques et l'ensemble des éléments qui les composent sont protégés par le droit de la propriété intellectuelle et demeurent la propriété exclusive de l'Éditeur ou de ses partenaires. Aucune stipulation des présentes CGU ne saurait être interprétée comme conférant à l'Utilisateur un droit de propriété sur ces éléments. L'Utilisateur conserve l'entière propriété des contenus qu'il dépose sur les Services.",
+    "auth.cgu.liability.title": "10. Responsabilité",
+    "auth.cgu.liability.body":
+      "L'Éditeur met en œuvre les moyens raisonnables pour assurer la disponibilité et la sécurité des Services. Sa responsabilité ne saurait toutefois être engagée en cas de dommage résultant d'une utilisation non conforme des Services, d'un cas de force majeure ou du fait d'un tiers. L'Utilisateur est responsable de la sauvegarde de ses propres données.",
+    "auth.cgu.availability.title": "11. Disponibilité et évolution des Services",
+    "auth.cgu.availability.body":
+      "Les Services sont accessibles 24 heures sur 24 et 7 jours sur 7, sous réserve des opérations de maintenance et des interruptions indépendantes de la volonté de l'Éditeur. L'Éditeur se réserve le droit de faire évoluer, de suspendre ou d'interrompre tout ou partie des Services, en informant les Utilisateurs par tout moyen approprié.",
+    "auth.cgu.termination.title": "12. Suspension et résiliation",
+    "auth.cgu.termination.body":
+      "L'Utilisateur peut fermer son compte à tout moment. L'Éditeur se réserve le droit de suspendre ou de résilier l'accès d'un Utilisateur en cas de manquement aux présentes CGU, après information préalable sauf urgence ou obligation légale. La résiliation entraîne la suppression du compte et des données associées dans les conditions prévues par la Politique de confidentialité.",
+    "auth.cgu.modifications.title": "13. Modification des CGU",
+    "auth.cgu.modifications.body":
+      "L'Éditeur peut modifier les présentes CGU afin de les adapter à l'évolution des Services ou de la réglementation. Les Utilisateurs sont informés de toute modification substantielle et sont invités à accepter la nouvelle version. La poursuite de l'utilisation des Services après l'entrée en vigueur de la nouvelle version vaut acceptation de celle-ci.",
+    "auth.cgu.governingLaw.title": "14. Droit applicable et juridiction compétente",
+    "auth.cgu.governingLaw.body":
+      "Les présentes CGU sont régies par le droit français. À défaut de résolution amiable, tout litige relatif à leur validité, leur interprétation ou leur exécution sera soumis aux juridictions compétentes dans les conditions prévues par la loi.",
+    "auth.legal.title": "Mentions légales",
+    "auth.legal.intro":
+      "Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN), les informations suivantes sont portées à la connaissance des Utilisateurs des Services.",
+    "auth.legal.editor.title": "Éditeur",
+    "auth.legal.editor.companyName.label": "Raison sociale",
+    "auth.legal.editor.companyName.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — raison sociale]",
+    "auth.legal.editor.legalForm.label": "Forme juridique",
+    "auth.legal.editor.legalForm.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — forme juridique]",
+    "auth.legal.editor.shareCapital.label": "Capital social",
+    "auth.legal.editor.shareCapital.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — capital social]",
+    "auth.legal.editor.headOffice.label": "Siège social",
+    "auth.legal.editor.headOffice.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — adresse du siège social]",
+    "auth.legal.editor.rcs.label": "Immatriculation (RCS)",
+    "auth.legal.editor.rcs.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — numéro et ville d'immatriculation au RCS]",
+    "auth.legal.editor.vat.label": "TVA intracommunautaire",
+    "auth.legal.editor.vat.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — numéro de TVA intracommunautaire]",
+    "auth.legal.contact.title": "Contact",
+    "auth.legal.contact.email.label": "Adresse électronique",
+    "auth.legal.contact.email.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — adresse électronique de contact]",
+    "auth.legal.contact.phone.label": "Téléphone",
+    "auth.legal.contact.phone.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — numéro de téléphone]",
+    "auth.legal.publicationDirector.title": "Directeur de la publication",
+    "auth.legal.publicationDirector.name.label": "Directeur de la publication",
+    "auth.legal.publicationDirector.name.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — nom du directeur de la publication]",
+    "auth.legal.host.title": "Hébergeur",
+    "auth.legal.host.name.label": "Dénomination",
+    "auth.legal.host.name.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — dénomination de l'hébergeur]",
+    "auth.legal.host.address.label": "Adresse",
+    "auth.legal.host.address.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — adresse de l'hébergeur]",
+    "auth.legal.host.contact.label": "Contact",
+    "auth.legal.host.contact.value":
+      "[À COMPLÉTER PAR LE JURIDIQUE — téléphone ou adresse électronique de l'hébergeur]",
   },
   en: {
     "auth.login.title": "Sign in",
@@ -97,5 +200,108 @@ export const messages: ChLocaleMessages = {
     "auth.link.haveAccount": "Already have an account? Sign in",
     "auth.link.newRequest": "New request",
     "auth.loading": "Loading",
+    "auth.cgu.title": "Terms of Use",
+    "auth.cgu.versionLabel": "Version {version} — effective as of {date}",
+    "auth.cgu.object.title": "1. Purpose",
+    "auth.cgu.object.body":
+      "These Terms of Use (the “Terms”) set out the terms and conditions under which the User accesses and uses the CustHome suite of online services (the “Services”), as well as the respective rights and obligations of the Publisher and the User.",
+    "auth.cgu.acceptance.title": "2. Acceptance of the Terms",
+    "auth.cgu.acceptance.body":
+      "Access to the Services is subject to the unreserved acceptance of these Terms. By creating an account or using the Services, the User acknowledges having read the Terms and accepts all of their provisions. Any User who does not accept the Terms must refrain from accessing the Services.",
+    "auth.cgu.services.title": "3. Description of the Services",
+    "auth.cgu.services.intro":
+      "CustHome is a suite of online portals that notably includes:",
+    "auth.cgu.services.authenticator":
+      "an authentication and account management service allowing the creation and administration of a single sign-in identifier for the Services;",
+    "auth.cgu.services.drive":
+      "Drive, an online file storage and sharing service, limited to 10 GB per account;",
+    "auth.cgu.services.budgy":
+      "Budgy, a budget management service enabling the aggregation of banking information through providers authorised under the Payment Services Directive (PSD2);",
+    "auth.cgu.services.admin":
+      "an administration portal reserved for Users holding the corresponding permissions.",
+    "auth.cgu.account.title": "4. User account",
+    "auth.cgu.account.body":
+      "Access to certain Services requires the creation of an account. The User undertakes to provide accurate, complete and up-to-date information upon registration and to keep it current in the event of any change. The User is solely responsible for keeping their credentials confidential and for any activity carried out from their account. Any unauthorised use must be reported to the Publisher without delay.",
+    "auth.cgu.obligations.title": "5. User obligations",
+    "auth.cgu.obligations.intro":
+      "The User undertakes to use the Services in accordance with their intended purpose, with applicable regulations and with these Terms. In particular, the User must refrain from:",
+    "auth.cgu.obligations.item1":
+      "infringing the rights of third parties or public order;",
+    "auth.cgu.obligations.item2":
+      "distributing unlawful, harmful or offensive content;",
+    "auth.cgu.obligations.item3":
+      "disrupting the operation of the Services or compromising their security;",
+    "auth.cgu.obligations.item4":
+      "accessing the Services through unauthorised automated means or circumventing technical protection measures.",
+    "auth.cgu.driveStorage.title": "6. File storage and sharing (Drive)",
+    "auth.cgu.driveStorage.body":
+      "The User remains solely responsible for the files they store, share or distribute through the Drive service, as well as for complying with the rights attached to such content. Storage space is limited to 10 GB per account. The Publisher reserves the right to suspend access to any manifestly unlawful content reported to it, under the conditions provided for by law.",
+    "auth.cgu.banking.title": "7. Banking aggregation (Budgy)",
+    "auth.cgu.banking.body":
+      "The Budgy service allows, at the User's request, the aggregation of information relating to their bank accounts through account information service providers authorised under Directive (EU) 2015/2366 (PSD2). The User remains free to enable or disable this feature at any time. The Publisher does not carry out any payment transaction and has no access to the User's means of payment.",
+    "auth.cgu.personalData.title": "8. Personal data",
+    "auth.cgu.personalData.body":
+      "The User's personal data is processed in compliance with applicable regulations, in particular Regulation (EU) 2016/679 (GDPR). The purposes of processing, retention periods and the procedures for exercising the User's rights are detailed in the Privacy Policy, which is available separately and supplements these Terms.",
+    "auth.cgu.intellectualProperty.title": "9. Intellectual property",
+    "auth.cgu.intellectualProperty.body":
+      "The Services, their architecture, interfaces, trademarks and all of the elements that make them up are protected by intellectual property law and remain the exclusive property of the Publisher or its partners. No provision of these Terms may be construed as granting the User any ownership right over these elements. The User retains full ownership of the content they upload to the Services.",
+    "auth.cgu.liability.title": "10. Liability",
+    "auth.cgu.liability.body":
+      "The Publisher implements reasonable means to ensure the availability and security of the Services. However, its liability cannot be engaged for any damage resulting from improper use of the Services, from a force majeure event or from the actions of a third party. The User is responsible for backing up their own data.",
+    "auth.cgu.availability.title": "11. Availability and evolution of the Services",
+    "auth.cgu.availability.body":
+      "The Services are accessible 24 hours a day, 7 days a week, subject to maintenance operations and interruptions beyond the Publisher's control. The Publisher reserves the right to modify, suspend or discontinue all or part of the Services, informing Users by any appropriate means.",
+    "auth.cgu.termination.title": "12. Suspension and termination",
+    "auth.cgu.termination.body":
+      "The User may close their account at any time. The Publisher reserves the right to suspend or terminate a User's access in the event of a breach of these Terms, subject to prior notice except in cases of emergency or legal obligation. Termination results in the deletion of the account and associated data under the conditions set out in the Privacy Policy.",
+    "auth.cgu.modifications.title": "13. Amendment of the Terms",
+    "auth.cgu.modifications.body":
+      "The Publisher may amend these Terms in order to adapt them to changes in the Services or in regulations. Users are informed of any substantial change and are invited to accept the new version. Continued use of the Services after the new version takes effect constitutes acceptance of that version.",
+    "auth.cgu.governingLaw.title": "14. Governing law and jurisdiction",
+    "auth.cgu.governingLaw.body":
+      "These Terms are governed by French law. Failing an amicable resolution, any dispute relating to their validity, interpretation or performance shall be submitted to the competent courts under the conditions provided for by law.",
+    "auth.legal.title": "Legal notice",
+    "auth.legal.intro":
+      "In accordance with the provisions of French Act No. 2004-575 of 21 June 2004 on confidence in the digital economy (LCEN), the following information is brought to the attention of the Users of the Services.",
+    "auth.legal.editor.title": "Publisher",
+    "auth.legal.editor.companyName.label": "Company name",
+    "auth.legal.editor.companyName.value":
+      "[TO BE COMPLETED BY LEGAL — company name]",
+    "auth.legal.editor.legalForm.label": "Legal form",
+    "auth.legal.editor.legalForm.value":
+      "[TO BE COMPLETED BY LEGAL — legal form]",
+    "auth.legal.editor.shareCapital.label": "Share capital",
+    "auth.legal.editor.shareCapital.value":
+      "[TO BE COMPLETED BY LEGAL — share capital]",
+    "auth.legal.editor.headOffice.label": "Registered office",
+    "auth.legal.editor.headOffice.value":
+      "[TO BE COMPLETED BY LEGAL — registered office address]",
+    "auth.legal.editor.rcs.label": "Trade register (RCS)",
+    "auth.legal.editor.rcs.value":
+      "[TO BE COMPLETED BY LEGAL — RCS registration number and city]",
+    "auth.legal.editor.vat.label": "Intra-EU VAT number",
+    "auth.legal.editor.vat.value":
+      "[TO BE COMPLETED BY LEGAL — intra-EU VAT number]",
+    "auth.legal.contact.title": "Contact",
+    "auth.legal.contact.email.label": "Email address",
+    "auth.legal.contact.email.value":
+      "[TO BE COMPLETED BY LEGAL — contact email address]",
+    "auth.legal.contact.phone.label": "Phone",
+    "auth.legal.contact.phone.value":
+      "[TO BE COMPLETED BY LEGAL — phone number]",
+    "auth.legal.publicationDirector.title": "Publication director",
+    "auth.legal.publicationDirector.name.label": "Publication director",
+    "auth.legal.publicationDirector.name.value":
+      "[TO BE COMPLETED BY LEGAL — publication director name]",
+    "auth.legal.host.title": "Hosting provider",
+    "auth.legal.host.name.label": "Name",
+    "auth.legal.host.name.value":
+      "[TO BE COMPLETED BY LEGAL — hosting provider name]",
+    "auth.legal.host.address.label": "Address",
+    "auth.legal.host.address.value":
+      "[TO BE COMPLETED BY LEGAL — hosting provider address]",
+    "auth.legal.host.contact.label": "Contact",
+    "auth.legal.host.contact.value":
+      "[TO BE COMPLETED BY LEGAL — hosting provider phone or email]",
   },
 };

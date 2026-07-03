@@ -24,12 +24,15 @@ const CGU_SECTIONS: readonly CguSection[] = [
 ];
 
 export default function CguTerms() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const formattedDate = new Date(TERMS_VERSION_DATE).toLocaleDateString(
+    locale === "en" ? "en-GB" : "fr-FR"
+  );
 
   return (
     <Stack gap="lg">
       <Feedback severity="info">
-        {t("auth.cgu.versionLabel", { version: TERMS_VERSION, date: TERMS_VERSION_DATE })}
+        {t("auth.cgu.versionLabel", { version: TERMS_VERSION, date: formattedDate })}
       </Feedback>
       {CGU_SECTIONS.map((section) => (
         <LegalSection key={section.key} title={t(`auth.cgu.${section.key}.title`)}>

@@ -13,9 +13,10 @@ const fr = messages.fr as Record<string, string>;
 const CGU_TITLE = fr["auth.cgu.title"];
 const LEGAL_TITLE = fr["auth.legal.title"];
 const LOGIN_TITLE = fr["auth.login.title"];
+const FORMATTED_DATE = new Date(TERMS_VERSION_DATE).toLocaleDateString("fr-FR");
 const VERSION_LABEL = fr["auth.cgu.versionLabel"]
   .replace("{version}", TERMS_VERSION)
-  .replace("{date}", TERMS_VERSION_DATE);
+  .replace("{date}", FORMATTED_DATE);
 
 function renderApp(url: string) {
   return render(

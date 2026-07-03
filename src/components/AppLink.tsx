@@ -1,6 +1,9 @@
 import { Link } from "@custhome/ui";
 import type { ReactNode } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import {
+  Link as RouterLink,
+  type LinkProps as RouterLinkProps,
+} from "react-router-dom";
 
 interface AppLinkProps {
   to: string;
@@ -8,13 +11,18 @@ interface AppLinkProps {
   newTab?: boolean;
 }
 
-export default function AppLink({ to, children, newTab }: AppLinkProps) {
-  const newTabProps = newTab
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
+function NewTabRouterLink(props: RouterLinkProps) {
+  return <RouterLink {...props} target="_blank" rel="noopener noreferrer" />;
+}
 
+export default function AppLink({ to, children, newTab }: AppLinkProps) {
   return (
-    <Link component={RouterLink} to={to} size="small" color="primary" {...newTabProps}>
+    <Link
+      component={newTab ? NewTabRouterLink : RouterLink}
+      to={to}
+      size="small"
+      color="primary"
+    >
       {children}
     </Link>
   );

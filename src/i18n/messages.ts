@@ -19,11 +19,11 @@ export const messages: ChLocaleMessages = {
     "auth.register.nameRequired": "Le nom est requis.",
     "auth.register.disabled": "Les inscriptions sont actuellement fermées.",
     "auth.register.terms.intro": "J'ai lu et j'accepte les",
-    "auth.register.terms.linkText": "conditions générales d'utilisation",
+    "auth.register.terms.linkText": "Conditions Générales d'Utilisation",
     "auth.register.terms.required":
-      "Vous devez accepter les conditions générales d'utilisation pour créer un compte.",
+      "Vous devez accepter les Conditions Générales d'Utilisation pour créer un compte.",
     "auth.register.terms.versionMismatch":
-      "Les conditions générales d'utilisation ont été mises à jour. Rechargez la page pour accepter la nouvelle version.",
+      "Les Conditions Générales d'Utilisation ont été mises à jour. Rechargez la page pour accepter la nouvelle version.",
     "auth.passwordMismatch": "Les mots de passe ne correspondent pas.",
     "auth.forgot.title": "Mot de passe oublié",
     "auth.forgot.submit": "Envoyer le lien",

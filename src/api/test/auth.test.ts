@@ -8,6 +8,7 @@ import {
   register,
   resetPassword,
 } from "../auth";
+import { TERMS_VERSION } from "../../lib/termsVersion";
 
 function mockFetch(status: number, body?: unknown) {
   const fn = vi.fn().mockResolvedValue(
@@ -40,12 +41,17 @@ describe("client API /api/auth", () => {
 
   it("register appelle POST /api/auth/register", async () => {
     const fetchMock = mockFetch(201, {});
-    await register("Alice", "a@b.fr", "secret123");
+    await register("Alice", "a@b.fr", "secret123", TERMS_VERSION);
     expect(fetchMock).toHaveBeenCalledWith(
       "/api/auth/register",
       expect.objectContaining({
         method: "POST",
-        body: JSON.stringify({ name: "Alice", email: "a@b.fr", password: "secret123" }),
+        body: JSON.stringify({
+          name: "Alice",
+          email: "a@b.fr",
+          password: "secret123",
+          accepted_terms_version: TERMS_VERSION,
+        }),
       })
     );
   });
@@ -92,7 +98,7 @@ describe("client API /api/auth", () => {
 
   it("expose le message d'erreur du corps JSON si present", async () => {
     mockFetch(409, { error: "email deja utilise" });
-    await expect(register("Bob", "a@b.fr", "x".repeat(8))).rejects.toThrow(
+    await expect(register("Bob", "a@b.fr", "x".repeat(8), TERMS_VERSION)).rejects.toThrow(
       "email deja utilise"
     );
   });

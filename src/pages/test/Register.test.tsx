@@ -31,7 +31,7 @@ async function fill(password: string, confirm = password) {
   await user.type(screen.getByLabelText(/confirmation/i), confirm);
   await user.click(
     screen.getByRole("checkbox", {
-      name: /j'ai lu et j'accepte les conditions générales d'utilisation/i,
+      name: /j'ai lu et j'accepte les/i,
     })
   );
   await user.click(screen.getByRole("button", { name: /créer le compte/i }));
@@ -55,6 +55,14 @@ describe("page Register", () => {
       TERMS_VERSION
     );
   }, 15000);
+
+  it("affiche la mention CGU avec les majuscules attendues", async () => {
+    renderRegister();
+    await screen.findByLabelText(/^nom/i);
+    expect(
+      screen.getByRole("link", { name: "Conditions Générales d'Utilisation" })
+    ).toBeInTheDocument();
+  });
 
   it("masque le formulaire quand les inscriptions sont fermees", async () => {
     vi.mocked(authApi.getRegistrationEnabled).mockResolvedValue({ enabled: false });

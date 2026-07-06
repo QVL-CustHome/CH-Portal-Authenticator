@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { Providers } from "../../test/Providers";
 import Register from "../Register";
 import { TERMS_VERSION } from "../../lib/termsVersion";
 
-const CONSENT_LABEL = /j'ai lu et j'accepte les conditions générales d'utilisation/i;
+const CONSENT_LABEL = /j'ai lu et j'accepte les/i;
 const CGU_LINK = /conditions générales d'utilisation/i;
 const SUBMIT = /créer le compte/i;
 const STRONG_PASSWORD = "Secret123!";
@@ -97,10 +97,24 @@ describe("SCRUM-297 AC1 checkbox et lien CGU sur la page d'inscription", () => {
     expect(consentCheckbox()).not.toBeChecked();
   });
 
-  it("affiche le libelle complet d'acceptation des CGU", async () => {
+  it("affiche le libelle d'introduction porte par la case a cocher", async () => {
     renderRegister();
     await screen.findByLabelText(/^nom/i);
     expect(screen.getByRole("checkbox", { name: CONSENT_LABEL })).toBeInTheDocument();
+  });
+
+  it("ne presente qu'une seule mention CGU cliquable, portee par le sublabel", async () => {
+    renderRegister();
+    await screen.findByLabelText(/^nom/i);
+    expect(screen.getAllByRole("link", { name: CGU_LINK })).toHaveLength(1);
+  });
+
+  it("le libelle de la case ne contient pas de lien", async () => {
+    renderRegister();
+    await screen.findByLabelText(/^nom/i);
+    const label = screen.getByText(CONSENT_LABEL).closest("label");
+    expect(label).not.toBeNull();
+    expect(within(label as HTMLElement).queryByRole("link")).not.toBeInTheDocument();
   });
 
   it("expose conditions generales d'utilisation comme lien vers /cgu", async () => {

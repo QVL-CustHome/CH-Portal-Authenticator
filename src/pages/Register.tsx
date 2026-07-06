@@ -90,6 +90,7 @@ export default function Register() {
           value={confirm}
           onChange={setConfirm}
           autoComplete="new-password"
+          showStrength={false}
           required
         />
         <Checkbox
@@ -97,13 +98,11 @@ export default function Register() {
           onChange={acceptTerms}
           required
           error={termsError}
-          label={
-            <>
-              {t("auth.register.terms.intro")}{" "}
-              <AppLink to="/cgu" newTab>
-                {t("auth.register.terms.linkText")}
-              </AppLink>
-            </>
+          label={t("auth.register.terms.intro")}
+          sublabel={
+            <AppLink to="/cgu" newTab subtitle>
+              {t("auth.register.terms.linkText")}
+            </AppLink>
           }
         />
         </Form>

@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { Providers } from "../../test/Providers";
 import Register from "../Register";
 import * as authApi from "../../api/auth";
+import { TERMS_VERSION } from "../../lib/termsVersion";
 
 vi.mock("../../api/auth", { spy: true });
 
@@ -22,12 +23,17 @@ function renderRegister() {
 }
 
 async function fill(password: string, confirm = password) {
-  const user = userEvent.setup();
+  const user = userEvent.setup({ delay: null });
   await screen.findByLabelText(/^nom/i);
   await user.type(screen.getByLabelText(/^nom/i), "Martin");
   await user.type(screen.getByLabelText(/^email/i), "nouveau@custhome.fr");
   await user.type(screen.getByLabelText(/^mot de passe/i), password);
   await user.type(screen.getByLabelText(/confirmation/i), confirm);
+  await user.click(
+    screen.getByRole("checkbox", {
+      name: /j'ai lu et j'accepte les/i,
+    })
+  );
   await user.click(screen.getByRole("button", { name: /créer le compte/i }));
 }
 
@@ -45,8 +51,17 @@ describe("page Register", () => {
     expect(authApi.register).toHaveBeenCalledWith(
       "Martin",
       "nouveau@custhome.fr",
-      "secret123"
+      "secret123",
+      TERMS_VERSION
     );
+  }, 15000);
+
+  it("affiche la mention CGU avec les majuscules attendues", async () => {
+    renderRegister();
+    await screen.findByLabelText(/^nom/i);
+    expect(
+      screen.getByRole("link", { name: "Conditions Générales d'Utilisation" })
+    ).toBeInTheDocument();
   });
 
   it("masque le formulaire quand les inscriptions sont fermees", async () => {

@@ -1,16 +1,18 @@
 import {
+  Checkbox,
   Feedback,
   Form,
   InputEmail,
   InputPassword,
   InputText,
   NAME_REGEX,
-  PageContent,
   Spinner,
   useTranslation,
 } from "@custhome/ui";
 import { useEffect, useState } from "react";
 import AuthNav from "../components/AuthNav";
+import AppLink from "../components/AppLink";
+import AuthPageContent from "../components/AuthPageContent";
 import { getRegistrationEnabled } from "../api/auth";
 import { useRegister } from "../hooks/useRegister";
 
@@ -41,12 +43,16 @@ export default function Register() {
     setPassword,
     confirm,
     setConfirm,
+    termsAccepted,
+    acceptTerms,
+    termsError,
+    submitDisabled,
     error,
     loading,
     submit,
   } = useRegister();
   return (
-    <PageContent
+    <AuthPageContent
       title={t("auth.register.title")}
       footer={<AuthNav links={[{ to: "/login", label: t("auth.link.haveAccount") }]} />}
     >
@@ -59,6 +65,7 @@ export default function Register() {
           onSubmit={submit}
           submitLabel={t("auth.register.submit")}
           loading={loading}
+          submitDisabled={submitDisabled}
           error={error}
         >
         <InputText
@@ -83,10 +90,23 @@ export default function Register() {
           value={confirm}
           onChange={setConfirm}
           autoComplete="new-password"
+          showStrength={false}
           required
+        />
+        <Checkbox
+          checked={termsAccepted}
+          onChange={acceptTerms}
+          required
+          error={termsError}
+          label={t("auth.register.terms.intro")}
+          sublabel={
+            <AppLink to="/cgu" newTab subtitle>
+              {t("auth.register.terms.linkText")}
+            </AppLink>
+          }
         />
         </Form>
       )}
-    </PageContent>
+    </AuthPageContent>
   );
 }

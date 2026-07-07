@@ -1,4 +1,4 @@
-import { useTranslation } from "@custhome/ui";
+import { useTranslation } from "canopui";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ApiError, getMe, logout, type Me } from "../api/auth";

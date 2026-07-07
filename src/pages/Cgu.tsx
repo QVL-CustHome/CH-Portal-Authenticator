@@ -1,4 +1,4 @@
-import { useTranslation } from "@custhome/ui";
+import { useTranslation } from "canopui";
 import AuthPageContent from "../components/AuthPageContent";
 import CguTerms from "../components/CguTerms";
 import LegalNotice from "../components/LegalNotice";

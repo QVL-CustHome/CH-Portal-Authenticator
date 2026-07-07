@@ -1,4 +1,4 @@
-import { PASSWORD_MIN_LENGTH, useTranslation } from "@custhome/ui";
+import { PASSWORD_MIN_LENGTH, useTranslation } from "canopui";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { resetPassword } from "../api/auth";

@@ -1,4 +1,4 @@
-import { Stack, useTranslation, type ChStackDirection } from "@custhome/ui";
+import { Stack, useTranslation, type ChStackDirection } from "canopui";
 import AppLink from "./AppLink";
 
 interface LegalLinksProps {

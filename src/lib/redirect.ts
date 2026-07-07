@@ -1,4 +1,4 @@
-import { REDIRECT_INTENT_PARAM } from "@custhome/ui";
+import { REDIRECT_INTENT_PARAM } from "canopui";
 
 const DEFAULT_TRUSTED_ORIGINS =
   "http://localhost:3201,http://localhost:3202,http://[::1]:3201,http://[::1]:3202";

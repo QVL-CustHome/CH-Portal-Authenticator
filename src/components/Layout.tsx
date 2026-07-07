@@ -1,4 +1,4 @@
-import { Layout as AuthLayout } from "@custhome/ui";
+import { Layout as AuthLayout } from "canopui";
 import { Outlet } from "react-router-dom";
 
 export default function Layout() {

@@ -1,4 +1,4 @@
-import { Link } from "@custhome/ui";
+import { Link } from "canopui";
 import type { ReactNode } from "react";
 import {
   Link as RouterLink,

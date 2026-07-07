@@ -1,5 +1,5 @@
 import { describe, expect, it, afterEach } from "vitest";
-import { REDIRECT_INTENT_PARAM } from "@custhome/ui";
+import { REDIRECT_INTENT_PARAM } from "canopui";
 import { safeRedirect, getRedirectTarget } from "../redirect";
 
 function setRedirectIntent(): void {

@@ -1,4 +1,4 @@
-import { Feedback, Form, InputPassword, useTranslation } from "@custhome/ui";
+import { Feedback, Form, InputPassword, useTranslation } from "canopui";
 import AuthNav from "../components/AuthNav";
 import AuthPageContent from "../components/AuthPageContent";
 import { useResetPassword } from "../hooks/useResetPassword";

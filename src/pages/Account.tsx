@@ -1,4 +1,4 @@
-import { Button, Feedback, Spinner, useTranslation } from "@custhome/ui";
+import { Button, Feedback, Spinner, useTranslation } from "canopui";
 import AuthPageContent from "../components/AuthPageContent";
 import ProfileDetails from "../components/ProfileDetails";
 import { useAccount } from "../hooks/useAccount";

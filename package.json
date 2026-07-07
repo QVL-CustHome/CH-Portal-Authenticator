@@ -5,11 +5,8 @@
   "type": "module",
   "description": "Portail d'authentification CustHome - React + Node.js, derriere CH-Api-GateWay",
   "scripts": {
-    "predev": "node scripts/sync-ui-lib.mjs",
     "dev": "vite --force",
-    "prebuild": "node scripts/sync-ui-lib.mjs",
     "build": "tsc -b && vite build",
-    "sync:ui": "node scripts/sync-ui-lib.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "vitest run",
@@ -18,7 +15,10 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "@custhome/ui": "git+https://gitlab.com/qvl-custhome/CH-UI-Library.git#v0.7.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.11",
+    "canopui": "1.0.1",
     "ch-portail-admin": "file:../CH-Portail-Admin",
     "express": "^5.1.0",
     "http-proxy-middleware": "^3.0.7",

@@ -2,7 +2,7 @@ import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import { REDIRECT_INTENT_PARAM } from "@custhome/ui";
+import { REDIRECT_INTENT_PARAM } from "canopui";
 import { Providers } from "../../test/Providers";
 import Login from "../Login";
 import * as authApi from "../../api/auth";

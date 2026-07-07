@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
-import { buildLoginUrl, REDIRECT_INTENT_PARAM } from "@custhome/ui";
+import { buildLoginUrl, REDIRECT_INTENT_PARAM } from "canopui";
 import { getRedirectTarget, safeRedirect } from "../redirect";
 
 const AUTH_PORTAL_URL = "http://localhost:3200";

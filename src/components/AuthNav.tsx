@@ -1,4 +1,4 @@
-import { Stack } from "@custhome/ui";
+import { Stack } from "canopui";
 import AppLink from "./AppLink";
 
 interface AuthNavItem {

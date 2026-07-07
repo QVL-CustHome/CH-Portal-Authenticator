@@ -1,4 +1,4 @@
-import { Form, InputEmail, InputPassword, useTranslation } from "@custhome/ui";
+import { Form, InputEmail, InputPassword, useTranslation } from "canopui";
 import AuthNav from "../components/AuthNav";
 import AuthPageContent from "../components/AuthPageContent";
 import { useLogin } from "../hooks/useLogin";

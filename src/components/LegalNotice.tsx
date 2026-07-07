@@ -1,4 +1,4 @@
-import { DescriptionList, Heading, Stack, useTranslation } from "@custhome/ui";
+import { DescriptionList, Heading, Stack, useTranslation } from "canopui";
 import LegalSection from "./LegalSection";
 
 interface LegalBlock {

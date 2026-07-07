@@ -1,4 +1,4 @@
-import { ChI18nProvider, ChThemeProvider } from "@custhome/ui";
+import { ChI18nProvider, ChThemeProvider } from "canopui";
 import type { ReactNode } from "react";
 import { messages } from "../i18n/messages";
 

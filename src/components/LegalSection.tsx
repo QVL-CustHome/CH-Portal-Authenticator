@@ -1,4 +1,4 @@
-import { Heading, Stack, type ChHeadingLevel } from "@custhome/ui";
+import { Heading, Stack, type ChHeadingLevel } from "canopui";
 import type { ReactNode } from "react";
 
 interface LegalSectionProps {

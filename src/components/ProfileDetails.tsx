@@ -1,4 +1,4 @@
-import { BulletList, DescriptionList, useTranslation } from "@custhome/ui";
+import { BulletList, DescriptionList, useTranslation } from "canopui";
 import type { ReactNode } from "react";
 import type { Me } from "../api/auth";
 

@@ -1,4 +1,4 @@
-import { BulletList, Feedback, Stack, useTranslation } from "@custhome/ui";
+import { BulletList, Feedback, Stack, useTranslation } from "canopui";
 import LegalSection from "./LegalSection";
 import { TERMS_VERSION, TERMS_VERSION_DATE } from "../lib/termsVersion";
 

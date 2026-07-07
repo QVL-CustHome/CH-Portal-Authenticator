@@ -8,7 +8,7 @@ import {
   NAME_REGEX,
   Spinner,
   useTranslation,
-} from "@custhome/ui";
+} from "canopui";
 import { useEffect, useState } from "react";
 import AuthNav from "../components/AuthNav";
 import AppLink from "../components/AppLink";

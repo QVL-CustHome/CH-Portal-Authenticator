@@ -41,7 +41,7 @@ export function safeRedirect(raw: string | null): string {
     const isHttp = url.protocol === "http:" || url.protocol === "https:";
     if (isHttp && trustedOrigins.includes(url.origin)) return url.href;
   } catch {
-
+    // URL invalide -> on retombe sur la redirection par defaut ci-dessous
   }
 
   return "/account";

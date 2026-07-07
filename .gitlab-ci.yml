@@ -1,6 +1,6 @@
 # CI/CD CH-Portal-Authenticator — base commune : template node QVL-ToolBox/PipeLine
-# Particularite : dependance npm "file:../CH-Portail-Admin" -> le depot voisin
-# doit exister avant npm ci (clone via CI_JOB_TOKEN, allowlist configuree sur Admin).
+# Particularite : dependance npm "file:../CH-Portail-Admin". Le repo voisin est clone
+# via les credentials stockees du runner (git-credentials), plus robuste que CI_JOB_TOKEN.
 include:
   - remote: "https://raw.githubusercontent.com/QVL-ToolBox/PipeLine/main/node.gitlab-ci.yml"
 
@@ -13,10 +13,9 @@ default:
   before_script:
     - |
       if [ -d ../CH-Portail-Admin/.git ]; then
-        git -C ../CH-Portail-Admin pull --ff-only || true
+        git -C ../CH-Portail-Admin fetch --depth 1 origin main && git -C ../CH-Portail-Admin reset --hard origin/main
       else
-        rm -rf ../CH-Portail-Admin
-        git clone "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/qvl-custhome/CH-Portail-Admin.git" ../CH-Portail-Admin
+        git clone --depth 1 https://gitlab.com/qvl-custhome/CH-Portail-Admin.git ../CH-Portail-Admin
       fi
 
 lint:
@@ -24,11 +23,20 @@ lint:
     - npm ci
     - npm run lint
 
+build:
+  variables:
+    VITE_TRUSTED_REDIRECT_ORIGINS: "https://ch-admin.qvl-project.com,https://ch-drive.qvl-project.com,https://ch-budgy.qvl-project.com"
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths: [dist/]
+    expire_in: 1 week
+
 deploy:
   stage: deploy
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
-  dependencies:
-    - build
+  dependencies: [build]
   script:
     - sudo /usr/local/bin/ch-deploy-portal ch-portal-authenticator "$CI_PROJECT_DIR"

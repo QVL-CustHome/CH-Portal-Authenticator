@@ -1,0 +1,34 @@
+# CI/CD CH-Portal-Authenticator — base commune : template node QVL-ToolBox/PipeLine
+# Particularite : dependance npm "file:../CH-Portail-Admin" -> le depot voisin
+# doit exister avant npm ci (clone via CI_JOB_TOKEN, allowlist configuree sur Admin).
+include:
+  - remote: "https://raw.githubusercontent.com/QVL-ToolBox/PipeLine/main/node.gitlab-ci.yml"
+
+stages:
+  - test
+  - build
+  - deploy
+
+default:
+  before_script:
+    - |
+      if [ -d ../CH-Portail-Admin/.git ]; then
+        git -C ../CH-Portail-Admin pull --ff-only || true
+      else
+        rm -rf ../CH-Portail-Admin
+        git clone "https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/qvl-custhome/CH-Portail-Admin.git" ../CH-Portail-Admin
+      fi
+
+lint:
+  script:
+    - npm ci
+    - npm run lint
+
+deploy:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  dependencies:
+    - build
+  script:
+    - sudo /usr/local/bin/ch-deploy-portal ch-portal-authenticator "$CI_PROJECT_DIR"

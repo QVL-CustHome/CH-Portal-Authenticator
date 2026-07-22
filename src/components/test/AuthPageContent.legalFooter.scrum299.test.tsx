@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { ChI18nProvider, ChThemeProvider } from "canopui";
 import { defaultLocale, messages } from "../../i18n/messages";
@@ -67,16 +66,14 @@ describe("Authenticator - aucun footer legal (SCRUM-299)", () => {
       mockMatchMedia(true);
     });
 
-    it("n'expose aucun lien legal ni bouton d'informations legales dans le menu reglages", async () => {
-      const user = userEvent.setup();
+    it("n'expose aucun menu reglages, lien legal ni bouton d'informations legales", () => {
       renderContent();
 
-      await user.click(screen.getByLabelText("Ouvrir le menu"));
-      const menu = await screen.findByRole("presentation");
-
-      expect(within(menu).queryByRole("link", { name: CGU_LABEL })).not.toBeInTheDocument();
-      expect(within(menu).queryByRole("link", { name: NOTICE_LABEL })).not.toBeInTheDocument();
-      expect(within(menu).queryByRole("link", { name: LEGAL_INFO_LABEL })).not.toBeInTheDocument();
+      expect(screen.queryByLabelText("Ouvrir le menu")).not.toBeInTheDocument();
+      expect(screen.queryByRole("link", { name: CGU_LABEL })).not.toBeInTheDocument();
+      expect(screen.queryByRole("link", { name: NOTICE_LABEL })).not.toBeInTheDocument();
+      expect(screen.queryByRole("link", { name: LEGAL_INFO_LABEL })).not.toBeInTheDocument();
+      expect(screen.queryByRole("button", { name: LEGAL_INFO_LABEL })).not.toBeInTheDocument();
     });
   });
 });

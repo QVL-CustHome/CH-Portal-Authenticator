@@ -5,12 +5,11 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { defaultLocale, messages } from "./i18n/messages";
-import "./styles.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ChI18nProvider locale={defaultLocale} messages={messages}>
-      <ChThemeProvider defaultMode="light">
+      <ChThemeProvider defaultMode="system">
         <BrowserRouter>
           <App />
         </BrowserRouter>

@@ -85,6 +85,13 @@ describe("page Account", () => {
     expect(authApi.logout).toHaveBeenCalled();
   });
 
+  it("affiche le bouton de deconnexion en variante accent", async () => {
+    vi.mocked(authApi.getMe).mockResolvedValue(ME);
+    renderPage();
+    const button = await screen.findByRole("button", { name: /se déconnecter/i });
+    expect(button.className).toContain("colorAccent");
+  });
+
   it("revient sur /login meme si POST /logout echoue", async () => {
     vi.mocked(authApi.getMe).mockResolvedValue(ME);
     vi.mocked(authApi.logout).mockRejectedValue(

@@ -102,6 +102,13 @@ describe("page Login", () => {
     expect(navigation.navigateTo).not.toHaveBeenCalled();
   });
 
+  it("affiche le bouton de connexion en variante accent", () => {
+    renderLogin();
+    expect(
+      screen.getByRole("button", { name: /se connecter/i }).className
+    ).toContain("colorAccent");
+  });
+
   it("propose les liens inscription et mot de passe oublie", () => {
     renderLogin();
     expect(

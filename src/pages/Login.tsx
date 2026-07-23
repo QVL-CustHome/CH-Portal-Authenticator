@@ -18,7 +18,13 @@ export default function Login() {
         />
       }
     >
-      <Form onSubmit={submit} submitLabel={t("auth.login.submit")} loading={loading} error={error}>
+      <Form
+        onSubmit={submit}
+        submitLabel={t("auth.login.submit")}
+        submitVariant="accent"
+        loading={loading}
+        error={error}
+      >
         <InputEmail label={t("auth.field.email")} value={email} onChange={setEmail} required />
         <InputPassword
           label={t("auth.field.password")}

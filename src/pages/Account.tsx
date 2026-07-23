@@ -16,7 +16,7 @@ export default function Account() {
       ) : (
         <>
           <ProfileDetails me={me} />
-          <Button variant="secondary" onClick={signOut}>
+          <Button variant="accent" onClick={signOut}>
             {t("auth.account.logout")}
           </Button>
         </>

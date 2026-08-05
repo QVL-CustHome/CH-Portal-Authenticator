@@ -28,6 +28,7 @@ build:
     VITE_TRUSTED_REDIRECT_ORIGINS: "https://ch-admin.qvl-project.com,https://ch-drive.qvl-project.com,https://ch-budgy.qvl-project.com"
   script:
     - npm ci
+    - npm install canopui@latest # toujours la derniere CanopUI dans l'artefact deploye
     - npm run build
   artifacts:
     paths: [dist/]
@@ -40,3 +41,14 @@ deploy:
   dependencies: [build]
   script:
     - sudo /usr/local/bin/ch-deploy-portal ch-portal-authenticator "$CI_PROJECT_DIR"
+
+# auto-pull du clone local persistant sur /mnt/c (evite les checkouts perimes en local)
+update-checkout:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  allow_failure: true
+  dependencies: []
+  script:
+    - git -C /mnt/c/QVL/QVL-CustHome/CH-Portal-Authenticator pull --ff-only origin main
+    - git -C /mnt/c/QVL/QVL-CustHome/CH-Portal-Authenticator log --oneline -1

@@ -12,7 +12,7 @@ export default function Account() {
       {error ? (
         <Feedback severity="error">{error}</Feedback>
       ) : !me ? (
-        <Spinner label={t("auth.loading")} />
+        <Spinner ariaLabel={t("auth.loading")} />
       ) : (
         <>
           <ProfileDetails me={me} />

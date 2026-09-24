@@ -1,9 +1,9 @@
-import { Heading, Stack, type ChHeadingLevel } from "canopui";
+import { Heading, Stack, type CanopHeadingLevel } from "canopui";
 import type { ReactNode } from "react";
 
 interface LegalSectionProps {
   title: string;
-  level?: ChHeadingLevel;
+  level?: CanopHeadingLevel;
   children: ReactNode;
 }
 

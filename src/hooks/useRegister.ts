@@ -51,7 +51,7 @@ export function useRegister() {
       return;
     }
     if (password.length < PASSWORD_MIN_LENGTH) {
-      setError(t("ch.validation.passwordMin", { min: PASSWORD_MIN_LENGTH }));
+      setError(t("canop.validation.passwordMin", { min: PASSWORD_MIN_LENGTH }));
       return;
     }
     if (!termsAccepted) {

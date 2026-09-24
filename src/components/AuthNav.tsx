@@ -12,7 +12,7 @@ interface AuthNavProps {
 
 export default function AuthNav({ links }: AuthNavProps) {
   return (
-    <Stack as="nav" gap="xs" label="Navigation d'authentification">
+    <Stack as="nav" gap="xs" ariaLabel="Navigation d'authentification">
       {links.map((link) => (
         <AppLink key={link.to} to={link.to}>
           {link.label}

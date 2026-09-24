@@ -1,5 +1,5 @@
-import { PageContent, type ChPageContentProps } from "canopui";
+import { PageContent, type CanopPageContentProps } from "canopui";
 
-export default function AuthPageContent(props: ChPageContentProps) {
+export default function AuthPageContent(props: CanopPageContentProps) {
   return <PageContent {...props} hugContent />;
 }

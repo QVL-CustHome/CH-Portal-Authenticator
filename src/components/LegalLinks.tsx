@@ -1,8 +1,8 @@
-import { Stack, useTranslation, type ChStackDirection } from "canopui";
+import { Stack, useTranslation, type CanopStackDirection } from "canopui";
 import AppLink from "./AppLink";
 
 interface LegalLinksProps {
-  direction?: ChStackDirection;
+  direction?: CanopStackDirection;
 }
 
 export default function LegalLinks({ direction = "column" }: LegalLinksProps) {
@@ -14,7 +14,7 @@ export default function LegalLinks({ direction = "column" }: LegalLinksProps) {
       direction={direction}
       gap={direction === "row" ? "md" : "xs"}
       alignItems="center"
-      label={t("auth.legal.footerLabel")}
+      ariaLabel={t("auth.legal.footerLabel")}
     >
       <AppLink to="/cgu">{t("auth.cgu.title")}</AppLink>
       <AppLink to="/cgu#mentions-legales">{t("auth.legal.title")}</AppLink>

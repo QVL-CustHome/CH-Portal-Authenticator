@@ -1,6 +1,6 @@
-import { ApiError, createApiClient } from "canopui";
+import { CanopApiError, createApiClient } from "canopui";
 
-export { ApiError };
+export { CanopApiError as ApiError };
 
 export interface Me {
   user_id: string;

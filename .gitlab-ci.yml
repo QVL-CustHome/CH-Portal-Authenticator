@@ -28,6 +28,7 @@ build:
     VITE_TRUSTED_REDIRECT_ORIGINS: "https://ch-admin.qvl-project.com,https://ch-drive.qvl-project.com,https://ch-budgy.qvl-project.com"
   script:
     - npm ci
+    # dependance en dist-tag latest : choix assume, voir docs/CANOPUI-LATEST.md
     - npm install canopui@latest # toujours la derniere CanopUI dans l'artefact deploye
     - npm run build
     # marqueur relu au demarrage par canopui-autorebuild (WSL) pour savoir quelle

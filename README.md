@@ -90,6 +90,19 @@ Parcours validés (2026-06-04) :
 
 Tous les appels passent par le portail (`:3000/api/...` → Gateway → Authenticator).
 
+## Design system CanopUI
+
+La dépendance `canopui` est déclarée en **`latest`** dans `package.json` : ce portail suit la
+dernière version publiée du design system, et il est **rebuild automatiquement au démarrage de
+la machine** si une CanopUI plus récente est parue (unité systemd `canopui-autorebuild`, qui
+redéclenche cette pipeline).
+
+C'est un choix délibéré, pas un oubli. Les raisons, les garde-fous et la marche à suivre si une
+montée de version pose problème sont dans **[`docs/CANOPUI-LATEST.md`](./docs/CANOPUI-LATEST.md)** —
+à lire avant de proposer de ré-épingler une version.
+
+Règle d'équipe inchangée : tout besoin de composant se traite **dans CanopUI**, pas en local.
+
 ## Sprint en cours
 
 Sprint 1 « front de base » : fonctionnel sans habillage graphique.
